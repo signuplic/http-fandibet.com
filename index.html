@@ -96,10 +96,24 @@
         </select>
       </div>
       <div class="input-group">
-        <label for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
+        <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
         <input type="text" id="account" name="account" translate="no" />
       </div>
     </div>
   </div>
+
+  <script>
+    const platformSelect = document.getElementById('platform');
+    const accountLabel = document.getElementById('account-label');
+
+    platformSelect.addEventListener('change', function() {
+      const value = this.value.toLowerCase();
+      if (value === 'stake' || value === 'mystake') {
+        accountLabel.innerHTML = 'Wallet Address <span class="required-star">*</span>';
+      } else {
+        accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
+      }
+    });
+  </script>
 </body>
 </html>
