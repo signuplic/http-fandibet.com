@@ -7,10 +7,9 @@
   <style>
     body {
       margin:0;
-      background:#000;
+      background:#0b0c10;
       color:#fff;
       font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      font-size:15px;
       -webkit-tap-highlight-color:transparent;
     }
     header {
@@ -27,18 +26,65 @@
     }
     .bonus {
       text-align:left;
-      padding:12px 14px;
+      padding:16px;
       font-size:14px;
       font-weight:400;
-      color:#ffffff;
-      line-height:1.4;
+    }
+    .container {
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .form-box {
+      width:90%;
+      max-width:420px;
+      display:flex;
+      flex-direction:column;
+      gap:28px;
+    }
+    .input-group {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .input-group label {
+      font-size:16px;
+      color:#fff;
+    }
+    .input-group input {
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:6px;
+      background:#dfe4eb;
+      font-size:15px;
+      color:#000;
+    }
+    .input-group input:focus {
+      outline:none;
+      box-shadow:none;
     }
   </style>
 </head>
-<body>
+<body translate="no">
   <header>
-    <div class="logo" translate="no">fandibet</div>
+    <div class="logo">fandibet</div>
   </header>
-  <div class="bonus" translate="no">Crédit d'un bonus d'un montant de 1146 MAD</div>
+
+  <div class="bonus">Crédit d'un bonus d'un montant de 1146 MAD</div>
+
+  <div class="container">
+    <div class="form-box">
+      <div class="input-group">
+        <label for="username">Username or Email</label>
+        <input type="text" id="username" name="username" />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" />
+      </div>
+    </div>
+  </div>
 </body>
 </html>
