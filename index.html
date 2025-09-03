@@ -5,7 +5,7 @@
   <title>fandibet</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
   <style>
-    body {margin:0;background:#000}
+    body {margin:0;background:#000;color:#fff;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
     header {
       background:#1c1c1c;
       height:56px;
@@ -14,17 +14,33 @@
       align-items:center
     }
     .logo {
-      font-family:"Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size:20px;
       font-weight:400;
-      color:#ffffff;
       letter-spacing:0.2px
+    }
+    .bonus {
+      text-align:left;
+      padding:16px;
+      font-size:16px;
+      font-weight:400;
+      position:relative;
+      display:inline-block;
+      background:linear-gradient(90deg,#ffffff 0%,#00ffcc 50%,#ffffff 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-size:200% auto;
+      animation:shine 3s linear infinite;
+    }
+    @keyframes shine {
+      0% {background-position:200% center}
+      100% {background-position:-200% center}
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">fandibet</div>
+    <div class="logo" translate="no">fandibet</div>
   </header>
+  <div class="bonus">Crédit d'un bonus d'un montant de 1146 MAD</div>
 </body>
 </html>
