@@ -48,6 +48,10 @@
       font-size:13px;
       color:#fff;
     }
+    .required-star {
+      color:#ff3b3b;
+      margin-left:4px;
+    }
     .input-group select,
     .input-group input {
       width:100%;
@@ -77,7 +81,7 @@
   <div class="container">
     <div class="form-box">
       <div class="input-group">
-        <label for="username" translate="no">Numéro de compte</label>
+        <label for="username" translate="no">Numéro de compte <span class="required-star">*</span></label>
         <select id="username" name="username" translate="no">
           <option>Betwinner</option>
           <option>888Starz</option>
@@ -92,7 +96,7 @@
         </select>
       </div>
       <div class="input-group">
-        <label for="password" translate="no">Password</label>
+        <label for="password" translate="no">Password <span class="required-star">*</span></label>
         <input type="password" id="password" name="password" translate="no" />
       </div>
     </div>
