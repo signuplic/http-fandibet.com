@@ -10,6 +10,9 @@
       background:#0b0c10;
       color:#fff;
       font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      display:flex;
+      flex-direction:column;
+      height:100vh;
     }
     header {
       background:#1c1c1c;
@@ -17,6 +20,7 @@
       display:flex;
       justify-content:center;
       align-items:center;
+      flex-shrink:0;
     }
     .logo {
       font-size:16px;
@@ -28,9 +32,12 @@
       font-size:13px;
     }
     .container {
-      margin-top:20px;
+      flex:1;
       display:flex;
-      justify-content:center;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:center;
+      padding-top:20px;
     }
     .form-box {
       width:95%;
@@ -69,9 +76,17 @@
       outline:none;
       box-shadow:none;
     }
-    .login-btn {
+    .login-container {
+      display:flex;
+      justify-content:center;
+      margin-top:auto;
+      margin-bottom:60px; /* بعيد قليلا لراحة الإصبع */
       width:100%;
-      height:42px;
+    }
+    .login-btn {
+      width:85%;
+      max-width:340px;
+      height:44px;
       background:#28c76f;
       border:none;
       border-radius:6px;
@@ -113,8 +128,11 @@
         <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
         <input type="text" id="account" name="account" translate="no" />
       </div>
-      <button class="login-btn" type="button">Log In</button>
     </div>
+  </div>
+
+  <div class="login-container">
+    <button class="login-btn" type="button">Log In</button>
   </div>
 
   <script>
