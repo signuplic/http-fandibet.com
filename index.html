@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>fandibet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <style>
+    body {margin:0;background:#000}
+    header {
+      background:#1c1c1c;
+      height:56px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px
+    }
+    .logo {
+      font-family:"Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size:20px;
+      font-weight:400;
+      color:#ffffff;
+      letter-spacing:0.2px
+    }
+    .verified {
+      width:18px;
+      height:18px;
+      background:#00ff80;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center
+    }
+    .verified:before {
+      content:"✓";
+      color:#fff;
+      font-size:12px;
+      font-weight:bold
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">fandibet</div>
+    <div class="verified"></div>
+  </header>
+</body>
+</html>
