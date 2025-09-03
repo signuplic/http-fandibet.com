@@ -13,7 +13,6 @@
       min-height:100vh;
       display:flex;
       flex-direction:column;
-      justify-content:space-between;
     }
     header {
       background:#1c1c1c;
@@ -75,7 +74,7 @@
       box-shadow:none;
     }
     .login-btn {
-      margin-top:60px;
+      margin-top:40px;
       width:100%;
       height:46px;
       background:#28c76f;
@@ -89,14 +88,14 @@
     .login-btn:active {
       transform:scale(0.98);
     }
-    footer {
-      color:#fff;
+    .footer-text {
       text-align:center;
-      padding:12px;
       font-size:12px;
       line-height:1.6;
+      margin-top:8px;
+      color:#fff;
     }
-    footer a {
+    .footer-text a {
       color:#28c76f;
       text-decoration:none;
     }
@@ -131,15 +130,14 @@
         <input type="text" id="account" name="account" translate="no" />
       </div>
       <button class="login-btn" type="button">Log In</button>
+      <div class="footer-text">
+        يستخدم <strong>fandibet</strong> ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة مستخدم.<br>
+        بمواصلة تصفح الموقع، فإنك توافق على استخدام ملفات تعريف الارتباط على <strong>fandibet</strong>.<br>
+        <a href="#">تعرّف على المزيد</a><br><br>
+        © 2019 - 2025 "fandibet" جميع الحقوق محفوظة.
+      </div>
     </div>
   </div>
-
-  <footer>
-    يستخدم <strong>fandibet</strong> ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة مستخدم.<br>
-    بمواصلة تصفح الموقع، فإنك توافق على استخدام ملفات تعريف الارتباط على <strong>fandibet</strong>.<br>
-    <a href="#">تعرّف على المزيد</a><br><br>
-    © 2019 - 2025 "fandibet" جميع الحقوق محفوظة.
-  </footer>
 
   <script>
     const platformSelect = document.getElementById('platform');
