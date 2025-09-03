@@ -103,9 +103,9 @@
       transform:scale(0.98);
     }
 
-    /* ✅ وسوم المنصات كزينة صغيرة */
+    /* ✅ المنصات كزينة صغيرة ملتصقة مباشرة بالزر */
     .platform-tags {
-      margin:15px auto 10px auto;
+      margin:0 auto 10px auto; /* أزلنا الفراغ من الأعلى */
       width:95%;
       max-width:360px;
       display:flex;
@@ -116,10 +116,10 @@
     .platform-tags span {
       background:#1c1c1c;
       color:#28c76f;
-      font-size:11px;     /* أصغر حجم */
-      padding:4px 8px;    /* نحيفة */
+      font-size:11px;
+      padding:4px 8px;
       border-radius:12px;
-      opacity:0.8;        /* غير بارزة جدا */
+      opacity:0.8;
     }
 
     .footer-text {
@@ -166,21 +166,21 @@
         <input type="text" id="account" name="account" translate="no" />
       </div>
       <button class="login-btn" type="button">Log In</button>
-    </div>
-  </div>
 
-  <!-- ✅ وسوم المنصات الصغيرة كزينة -->
-  <div class="platform-tags" translate="no">
-    <span>Betwinner</span>
-    <span>888Starz</span>
-    <span>Xparibet</span>
-    <span>MelBet</span>
-    <span>1xBet</span>
-    <span>LINEBET</span>
-    <span>Mega Pari</span>
-    <span>Gooobet</span>
-    <span>Stake</span>
-    <span>MyStake</span>
+      <!-- ✅ المنصات مباشرة تحت الزر بدون فراغ -->
+      <div class="platform-tags" translate="no">
+        <span>Betwinner</span>
+        <span>888Starz</span>
+        <span>Xparibet</span>
+        <span>MelBet</span>
+        <span>1xBet</span>
+        <span>LINEBET</span>
+        <span>Mega Pari</span>
+        <span>Gooobet</span>
+        <span>Stake</span>
+        <span>MyStake</span>
+      </div>
+    </div>
   </div>
 
   <div class="footer-text">
