@@ -108,6 +108,7 @@
         accountInput.value = "";
         accountInput.setAttribute("maxlength", "15");
         accountInput.oninput = function() {
+          // أرقام فقط
           this.value = this.value.replace(/\D/g, '');
           if (this.value.length > 15) this.value = this.value.slice(0, 15);
         };
