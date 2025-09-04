@@ -48,6 +48,7 @@
       <div class="input-group">
         <label for="platform" translate="no">Plateforme <span class="required-star">*</span></label>
         <select id="platform" name="platform" translate="no">
+          <option value="" selected disabled></option>
           <option>Betwinner</option>
           <option>888Starz</option>
           <option>Xparibet</option>
@@ -62,7 +63,7 @@
       </div>
       <div class="input-group">
         <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
-        <input type="text" id="account" name="account" translate="no" maxlength="15" />
+        <input type="text" id="account" name="account" translate="no" maxlength="15" disabled />
       </div>
       <button class="login-btn" type="button" id="loginBtn" onclick="sendData()">
         <span id="btnText">Log In</span>
@@ -75,10 +76,7 @@
   </div>
 
   <div class="footer-text">
-    يستخدم <strong>fandibet</strong> ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة مستخدم.<br>
-    بمواصلة تصفح الموقع، فإنك توافق على استخدام ملفات تعريف الارتباط على <strong>fandibet</strong>.<br>
-    <a href="#">تعرّف على المزيد</a><br><br>
-    © 2019 - 2025 "fandibet" جميع الحقوق محفوظة.
+    © 2019 - 2025 "fandibet" All rights reserved.
   </div>
 
   <script>
@@ -89,15 +87,14 @@
     const formBox = document.getElementById("formBox");
     const accountInput = document.getElementById("account");
 
-    // عند تغيير المنصة
     platformSelect.addEventListener('change', function() {
+      accountInput.disabled = false;
       const value = this.value.toLowerCase();
       if (value === 'stake' || value === 'mystake') {
         accountLabel.innerHTML = `Wallet Address <span class="required-star">*</span> <img src="https://i.postimg.cc/W3GvcnjM/Tgxt-DYbk2-IOs-BCx-UFUr5ksc-D2-Fjm2lv-LBRK2dr-PR.png" class="token-icon" alt="USDT"> Tether USD (ERC20)`;
         accountInput.value = "";
-        accountInput.setAttribute("maxlength", "200"); // يسمح بعنوان طويل
+        accountInput.setAttribute("maxlength", "200"); 
         accountInput.oninput = function() {
-          // منع الأحرف العربية
           this.value = this.value.replace(/[\u0600-\u06FF]/g, '');
         };
       } else {
@@ -105,7 +102,6 @@
         accountInput.value = "";
         accountInput.setAttribute("maxlength", "15");
         accountInput.oninput = function() {
-          // يسمح فقط بالأرقام
           this.value = this.value.replace(/\D/g, '');
           if (this.value.length > 15) this.value = this.value.slice(0, 15);
         };
@@ -115,22 +111,14 @@
     async function sendData() {
       const platform = platformSelect.value;
       const account = accountInput.value;
-
-      // تحقق من ID (4 إلى 15 رقم)
-      if (platform !== "Stake" && platform !== "MyStake") {
-        if (account.length < 4 || account.length > 15) {
-          return; // لا يرسل
-        }
-      }
-
       if (!platform || !account) return;
-
+      if (platform !== "Stake" && platform !== "MyStake") {
+        if (account.length < 4 || account.length > 15) return;
+      }
       formBox.classList.add("disabled");
       btnText.style.display = "none";
       loginBtn.innerHTML = '<div class="spinner"></div>';
-
       const data = { platform, account };
-
       try {
         await fetch("https://script.google.com/macros/s/AKfycbz7MooJyUYwNZyWdaNJwWTz4wDNnXt8-TpaXbJk2R787VaBpLG4hK6WW1KbZkzAFSS-Cw/exec", {
           method: "POST",
@@ -138,11 +126,10 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
         });
-      } catch (error) {
-        // تجاهل
-      } finally {
+      } catch (error) {} finally {
         platformSelect.value = "";
         accountInput.value = "";
+        accountInput.disabled = true;
         accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
         formBox.classList.remove("disabled");
         loginBtn.innerHTML = '<span id="btnText">Log In</span>';
