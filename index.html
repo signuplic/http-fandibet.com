@@ -98,20 +98,18 @@
       const value = this.value.toLowerCase();
 
       if (value === 'stake' || value === 'mystake') {
-        // Wallet Address
         accountLabel.innerHTML = `Wallet Address <span class="required-star">*</span> <img src="https://i.postimg.cc/W3GvcnjM/Tgxt-DYbk2-IOs-BCx-UFUr5ksc-D2-Fjm2lv-LBRK2dr-PR.png" class="token-icon" alt="USDT"> Tether USD (ERC20)`;
         accountInput.value = "";
         accountInput.removeAttribute("maxlength");
         accountInput.oninput = function() {
-          this.value = this.value.replace(/[\u0600-\u06FF]/g, ''); // منع العربية
+          this.value = this.value.replace(/[\u0600-\u06FF]/g, '');
         };
       } else {
-        // Numéro de compte ID: أرقام فقط
         accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
         accountInput.value = "";
         accountInput.setAttribute("maxlength", "15");
         accountInput.oninput = function() {
-          this.value = this.value.replace(/\D/g, ''); // فقط أرقام
+          this.value = this.value.replace(/\D/g, '');
           if (this.value.length > 15) this.value = this.value.slice(0, 15);
         };
       }
@@ -122,9 +120,9 @@
       const account = accountInput.value;
 
       if (platform === "Stake" || platform === "MyStake") {
-        if (account.length < 10) { return; } // Wallet Address min 10
+        if (account.length < 10) { return; }
       } else {
-        if (account.length < 4 || account.length > 15) { return; } // ID بين 4 و 15 رقم
+        if (account.length < 4 || account.length > 15) { return; }
       }
 
       if (!platform || !account) return;
@@ -146,12 +144,11 @@
       } catch (error) {
       } finally {
         setTimeout(() => {
-          window.location.href = "recharge";
+          window.location.href = "recharge/";
         }, 2000);
       }
     }
 
-    // فرض أولي: Numéro de compte ID يكون أرقام فقط عند تحميل الصفحة
     accountInput.oninput = function() {
       this.value = this.value.replace(/\D/g, '');
       if (this.value.length > 15) this.value = this.value.slice(0, 15);
