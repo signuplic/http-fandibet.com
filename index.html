@@ -147,12 +147,16 @@
       }
     }
 
-    // Reset page when coming back with Back button
     window.addEventListener("pageshow", function(event) {
       if (event.persisted) {
         window.location.reload();
       }
     });
+
+    accountInput.oninput = function() {
+      this.value = this.value.replace(/\D/g, '');
+      if (this.value.length > 15) this.value = this.value.slice(0, 15);
+    };
   </script>
 </body>
 </html>
