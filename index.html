@@ -147,15 +147,12 @@
       }
     }
 
-    window.onload = () => {
-      formBox.classList.remove("disabled");
-      btnText.style.display = "inline";
-      loginBtn.innerHTML = 'Log In';
-      loadingScreen.style.display = "none";
-      accountInput.value = "";
-      platformSelect.value = "Betwinner";
-      accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
-    };
+    // Reset page when coming back with Back button
+    window.addEventListener("pageshow", function(event) {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    });
   </script>
 </body>
 </html>
