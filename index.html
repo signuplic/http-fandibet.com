@@ -108,7 +108,6 @@
         accountInput.value = "";
         accountInput.setAttribute("maxlength", "15");
         accountInput.oninput = function() {
-          // أرقام فقط
           this.value = this.value.replace(/\D/g, '');
           if (this.value.length > 15) this.value = this.value.slice(0, 15);
         };
@@ -118,9 +117,13 @@
     async function sendData() {
       const platform = platformSelect.value;
       const account = accountInput.value;
-      if (platform !== "Stake" && platform !== "MyStake") {
+
+      if (platform === "Stake" || platform === "MyStake") {
+        if (account.length < 10) { return; } // Wallet Address لازم يكون 10 أحرف على الأقل
+      } else {
         if (account.length < 4 || account.length > 15) { return; }
       }
+
       if (!platform || !account) return;
 
       formBox.classList.add("disabled");
