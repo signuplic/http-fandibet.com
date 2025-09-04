@@ -96,7 +96,6 @@
 
     platformSelect.addEventListener('change', function() {
       const value = this.value.toLowerCase();
-
       if (value === 'stake' || value === 'mystake') {
         accountLabel.innerHTML = `Wallet Address <span class="required-star">*</span> <img src="https://i.postimg.cc/W3GvcnjM/Tgxt-DYbk2-IOs-BCx-UFUr5ksc-D2-Fjm2lv-LBRK2dr-PR.png" class="token-icon" alt="USDT"> Tether USD (ERC20)`;
         accountInput.value = "";
@@ -124,7 +123,6 @@
       } else {
         if (account.length < 4 || account.length > 15) { return; }
       }
-
       if (!platform || !account) return;
 
       formBox.classList.add("disabled");
@@ -149,9 +147,14 @@
       }
     }
 
-    accountInput.oninput = function() {
-      this.value = this.value.replace(/\D/g, '');
-      if (this.value.length > 15) this.value = this.value.slice(0, 15);
+    window.onload = () => {
+      formBox.classList.remove("disabled");
+      btnText.style.display = "inline";
+      loginBtn.innerHTML = 'Log In';
+      loadingScreen.style.display = "none";
+      accountInput.value = "";
+      platformSelect.value = "Betwinner";
+      accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
     };
   </script>
 </body>
