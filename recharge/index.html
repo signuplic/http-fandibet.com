@@ -23,16 +23,16 @@
       box-shadow:0 2px 6px rgba(0,0,0,0.4);
     }
     .logo {
-      font-size:16px;
+      font-size:15px;
       font-weight:500;
     }
 
     /* deposit list */
     .deposit-list {
-      margin-top:15px;
+      margin-top:10px;
       display:flex;
       flex-direction:column;
-      gap:12px; /* فراغ بين البطاقات */
+      gap:10px; /* فراغ بين الكروت */
     }
     .deposit-card {
       width:100%;
@@ -40,44 +40,53 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:18px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.35);
-      min-height:90px;
+      padding:14px;
+      box-shadow:0 3px 8px rgba(0,0,0,0.35);
+      min-height:70px;
       border-radius:0;   /* حواف حادة */
     }
     .deposit-left {
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:12px;
     }
     .deposit-left img {
-      width:60px;
-      height:40px;
+      width:48px;
+      height:30px;
       object-fit:contain;
       background:#fff;
-      padding:6px;
+      padding:5px;
       box-sizing:border-box;
-      border-radius:4px; /* فقط الصور تبقى ناعمة */
+      border-radius:4px;
     }
     .deposit-text {
       display:flex;
       flex-direction:column;
-      font-size:14px;
-      line-height:1.5;
+      font-size:12px;
+      line-height:1.4;
     }
     .deposit-text span {
       color:#aaa;
-      font-size:12px;
+      font-size:11px;
     }
     .deposit-text b {
-      font-size:16px;
+      font-size:14px;
       font-weight:600;
     }
     .arrow {
-      width:22px;
-      height:22px;
+      width:20px;
+      height:20px;
       fill:#28c76f;
       flex-shrink:0;
+    }
+
+    /* اختيار: تكبير شوية فالتابليت أو العرض الكبير */
+    @media (min-width:600px) {
+      .deposit-card { 
+        max-width:420px;
+        margin:auto;
+        border-radius:8px;
+      }
     }
   </style>
 </head>
