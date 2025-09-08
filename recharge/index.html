@@ -29,6 +29,7 @@
       display:flex;
       flex-direction:column;
       gap:10px;
+      padding:0 10px; /* باش الكارد مايلصقش مع الحافة */
     }
     .deposit-card {
       width:100%;
@@ -38,13 +39,14 @@
       justify-content:space-between;
       padding:12px;
       border-radius:0;
+      box-sizing:border-box;
     }
     .deposit-left {
       display:flex;
       align-items:center;
       gap:10px;
       flex:1;
-      min-width:0; /* يسمح للنص يتقصّر بدل ما يشوه */
+      min-width:0;
     }
     .deposit-left img {
       width:50px;
@@ -53,7 +55,7 @@
       background:#fff;
       padding:5px;
       border-radius:4px;
-      flex-shrink:0; /* الصورة ما تصغارش بزاف */
+      flex-shrink:0;
     }
     .deposit-text {
       display:flex;
@@ -61,9 +63,8 @@
       font-size:12px;
       line-height:1.4;
       flex:1;
-      overflow:hidden; 
-      text-overflow:ellipsis;
-      white-space:nowrap;
+      word-wrap:break-word;
+      white-space:normal; /* يخلي النص ينزل للسطر */
     }
     .deposit-text span {
       color:#aaa;
@@ -77,7 +78,21 @@
       width:18px;
       height:18px;
       fill:#28c76f;
-      flex-shrink:0; /* السهم يبقى ثابت */
+      flex-shrink:0;
+    }
+
+    /* responsive للهاتف */
+    @media(max-width:420px){
+      .deposit-card {
+        padding:10px;
+      }
+      .deposit-left img {
+        width:40px;
+        height:26px;
+      }
+      .deposit-text b {
+        font-size:13px;
+      }
     }
   </style>
 </head>
@@ -89,10 +104,10 @@
   <div class="deposit-list">
     <div class="deposit-card">
       <div class="deposit-left">
-        <img src="" alt="crypto">
+        <img src="" alt="damane-cash">
         <div class="deposit-text">
           <span>Deposit with</span>
-          <b>Buy crypto</b>
+          <b>Damane Cash</b>
           Min :
         </div>
       </div>
@@ -101,10 +116,10 @@
 
     <div class="deposit-card">
       <div class="deposit-left">
-        <img src="" alt="skrill">
+        <img src="" alt="chaabi-pay">
         <div class="deposit-text">
           <span>Deposit with</span>
-          <b>Skrill</b>
+          <b>Chaabi Pay</b>
           Min : Max :
         </div>
       </div>
@@ -113,10 +128,10 @@
 
     <div class="deposit-card">
       <div class="deposit-left">
-        <img src="" alt="cards">
+        <img src="" alt="barid-cash">
         <div class="deposit-text">
           <span>Deposit with</span>
-          <b>Cards</b>
+          <b>Barid Cash</b>
           Min : Max :
         </div>
       </div>
@@ -125,10 +140,10 @@
 
     <div class="deposit-card">
       <div class="deposit-left">
-        <img src="" alt="mifinity">
+        <img src="" alt="cash-plus">
         <div class="deposit-text">
           <span>Deposit with</span>
-          <b>MiFinity</b>
+          <b>Cash Plus</b>
           Min : Max :
         </div>
       </div>
