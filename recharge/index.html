@@ -23,6 +23,8 @@
     .deposit-title {display:flex;align-items:center;justify-content:flex-end;gap:6px;padding:12px 15px 0 15px;font-size:14px;font-weight:500;}
     .deposit-title svg { width:20px;height:20px;fill:#00aaff;flex-shrink:0; }
     .deposit-list { margin-top:10px;display:flex;flex-direction:column;gap:10px;padding:0 10px; }
+
+    /* البطاقة الأساسية */
     .deposit-card {width:100%;background:#1c1c1c;display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:0;box-sizing:border-box;}
     .deposit-left {display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
     .logo-box {width:70px;height:40px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:4px;overflow:hidden;}
@@ -31,8 +33,22 @@
     .deposit-text span {color:#aaa;font-size:11px;}
     .deposit-text b {font-size:14px;font-weight:600;}
     .arrow {width:18px;height:18px;fill:#28c76f;flex-shrink:0;}
+
+    /* جعل الرابط يبدو كبطاقة بدون خط سفلي */
+    .link-card {
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-radius:0;
+      background:#1c1c1c;
+      padding:12px;
+    }
+    .link-card:active {opacity:0.9;}
+
     @media(max-width:420px){
-      .deposit-card{padding:10px;}
+      .deposit-card,.link-card{padding:10px;}
       .logo-box{width:60px;height:35px;}
       .deposit-text b{font-size:13px;}
     }
@@ -57,8 +73,8 @@
   </div>
 
   <div class="deposit-list">
-    <!-- Damane Cash -->
-    <div class="deposit-card">
+    <!-- Damane Cash (البطاقة كاملة رابط) -->
+    <a href="dc/index.html" class="link-card" aria-label="Damane Cash (dc)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="damane" alt="damane-cash">
@@ -66,11 +82,11 @@
         <div class="deposit-text">
           <span>Deposit with</span>
           <b>Damane Cash</b>
-           min : 100.00 MAD
+          min : 100.00 MAD
         </div>
       </div>
-      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
+      <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
 
     <!-- Chaabi Pay -->
     <div class="deposit-card">
