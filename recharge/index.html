@@ -201,9 +201,9 @@
 
     function blobToDataURL(blob){
       return new Promise((resolve,reject)=>{
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
+        const reader=new FileReader();
+        reader.onload=()=>resolve(reader.result);
+        reader.onerror=reject;
         reader.readAsDataURL(blob);
       });
     }
@@ -230,14 +230,23 @@
     }
     initLogos();
 
-    // Overlay عند الضغط
     const overlay=document.getElementById('overlay');
+
+    // عند الضغط يظهر overlay
     document.querySelectorAll('.link-card').forEach(card=>{
       card.addEventListener('click',()=>{
         const target=card.getAttribute('data-href');
         overlay.classList.add('active');
         setTimeout(()=>{window.location=target;},1500);
       });
+    });
+
+    // عند الرجوع أو إعادة التحميل ينطفئ overlay
+    window.addEventListener("pageshow", ()=> {
+      overlay.classList.remove("active");
+    });
+    window.addEventListener("load", ()=> {
+      overlay.classList.remove("active");
     });
   </script>
 </body>
