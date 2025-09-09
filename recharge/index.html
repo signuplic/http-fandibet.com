@@ -24,7 +24,7 @@
     .deposit-title svg { width:20px;height:20px;fill:#00aaff;flex-shrink:0; }
     .deposit-list { margin-top:10px;display:flex;flex-direction:column;gap:10px;padding:0 10px; }
 
-    /* البطاقة الأساسية */
+    /* البطاقات */
     .deposit-card {width:100%;background:#1c1c1c;display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:0;box-sizing:border-box;}
     .deposit-left {display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
     .logo-box {width:70px;height:40px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:4px;overflow:hidden;}
@@ -34,7 +34,7 @@
     .deposit-text b {font-size:14px;font-weight:600;}
     .arrow {width:18px;height:18px;fill:#28c76f;flex-shrink:0;}
 
-    /* جعل الرابط يبدو كبطاقة بدون خط سفلي */
+    /* الروابط كبطاقات */
     .link-card {
       text-decoration:none;
       color:inherit;
@@ -73,8 +73,8 @@
   </div>
 
   <div class="deposit-list">
-    <!-- Damane Cash (البطاقة كاملة رابط) -->
-    <a href="dc/index.html" class="link-card" aria-label="Damane Cash (dc)">
+    <!-- Damane Cash -> dc/ -->
+    <a href="dc/" class="link-card" aria-label="Damane Cash (dc)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="damane" alt="damane-cash">
@@ -88,8 +88,8 @@
       <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
     </a>
 
-    <!-- Chaabi Pay -->
-    <div class="deposit-card">
+    <!-- Chaabi Pay -> ch/ -->
+    <a href="ch/" class="link-card" aria-label="Chaabi Pay (ch)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="chaabi" alt="chaabi-pay">
@@ -97,14 +97,14 @@
         <div class="deposit-text">
           <span>Deposit with</span>
           <b>Chaabi Pay</b>
-           min : 50.00 MAD
+          min : 50.00 MAD
         </div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
+    </a>
 
-    <!-- Barid Cash -->
-    <div class="deposit-card">
+    <!-- Barid Cash -> bc/ -->
+    <a href="bc/" class="link-card" aria-label="Barid Cash (bc)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="baridcash" alt="barid-cash">
@@ -113,14 +113,14 @@
           <span>Deposit with</span>
           <b>Barid Cash</b>
           100.00 MAD
-          الحد الأدنى 
+          الحد الأدنى
         </div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
+    </a>
 
-    <!-- Cash Plus -->
-    <div class="deposit-card">
+    <!-- Cash Plus -> cp/ -->
+    <a href="cp/" class="link-card" aria-label="Cash Plus (cp)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="cashplus" alt="cash-plus">
@@ -132,10 +132,10 @@
         </div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
+    </a>
 
-    <!-- Albarid Bank -->
-    <div class="deposit-card">
+    <!-- Albarid Bank -> ab/ -->
+    <a href="ab/" class="link-card" aria-label="Albarid Bank (ab)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="albarid" alt="albarid-bank">
@@ -144,14 +144,14 @@
           <span>Deposit with</span>
           <b>Albarid Bank</b>
           100.00 MAD
-          الحد الأدنى 
+          الحد الأدنى
         </div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
+    </a>
 
-    <!-- Bank Populaire -->
-    <div class="deposit-card">
+    <!-- Bank Populaire -> bp/ -->
+    <a href="bp/" class="link-card" aria-label="Bank Populaire (bp)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="populaire" alt="bank-populaire">
@@ -159,15 +159,14 @@
         <div class="deposit-text">
           <span>Deposit with</span>
           <b>Bank Populaire</b>
-          min : 400.00 MAD
-         / max : 10 000.00 MAD
+          min : 400.00 MAD / max : 10 000.00 MAD
         </div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
+    </a>
 
-    <!-- Attijari Bank -->
-    <div class="deposit-card">
+    <!-- Attijari Bank -> at/ -->
+    <a href="at/" class="link-card" aria-label="Attijari Bank (at)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="attijari" alt="attijari-bank">
@@ -176,14 +175,14 @@
           <span>Deposit with</span>
           <b>Attijari Bank</b>
           100.00 MAD
-          الحد الأدنى 
+          الحد الأدنى
         </div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
+    </a>
 
-    <!-- Bankalik -->
-    <div class="deposit-card">
+    <!-- Bankalik -> bk/ -->
+    <a href="bk/" class="link-card" aria-label="Bankalik (bk)">
       <div class="deposit-left">
         <div class="logo-box">
           <img data-key="bankalik" alt="bankalik">
@@ -192,11 +191,11 @@
           <span>Deposit with</span>
           <b>Bankalik</b>
           50.00 MAD
-          الحد الأدنى 
+          الحد الأدنى
         </div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
+    </a>
   </div>
 
   <script>
