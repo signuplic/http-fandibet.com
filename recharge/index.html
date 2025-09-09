@@ -24,17 +24,6 @@
     .deposit-title svg { width:20px;height:20px;fill:#00aaff;flex-shrink:0; }
     .deposit-list { margin-top:10px;display:flex;flex-direction:column;gap:10px;padding:0 10px; }
 
-    /* البطاقات */
-    .deposit-card {width:100%;background:#1c1c1c;display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:0;box-sizing:border-box;}
-    .deposit-left {display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
-    .logo-box {width:70px;height:40px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:4px;overflow:hidden;}
-    .logo-box img {max-width:100%;max-height:100%;object-fit:contain;display:block;}
-    .deposit-text {display:flex;flex-direction:column;font-size:12px;line-height:1.4;flex:1;word-wrap:break-word;white-space:normal;}
-    .deposit-text span {color:#aaa;font-size:11px;}
-    .deposit-text b {font-size:14px;font-weight:600;}
-    .arrow {width:18px;height:18px;fill:#28c76f;flex-shrink:0;}
-
-    /* الروابط كبطاقات */
     .link-card {
       text-decoration:none;
       color:inherit;
@@ -44,13 +33,51 @@
       border-radius:0;
       background:#1c1c1c;
       padding:12px;
+      cursor:pointer;
     }
-    .link-card:active {opacity:0.9;}
+    .deposit-left {display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
+    .logo-box {width:70px;height:40px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:4px;overflow:hidden;}
+    .logo-box img {max-width:100%;max-height:100%;object-fit:contain;display:block;}
+    .deposit-text {display:flex;flex-direction:column;font-size:12px;line-height:1.4;flex:1;word-wrap:break-word;white-space:normal;}
+    .deposit-text span {color:#aaa;font-size:11px;}
+    .deposit-text b {font-size:14px;font-weight:600;}
+    .arrow {width:18px;height:18px;fill:#28c76f;flex-shrink:0;}
 
     @media(max-width:420px){
-      .deposit-card,.link-card{padding:10px;}
+      .link-card{padding:10px;}
       .logo-box{width:60px;height:35px;}
       .deposit-text b{font-size:13px;}
+    }
+
+    /* شاشة التأثير */
+    .overlay {
+      position:fixed;
+      top:0;left:0;
+      width:100%;height:100%;
+      background:rgba(0,0,0,0.6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+      visibility:hidden;
+      opacity:0;
+      transition:opacity 0.3s ease;
+    }
+    .overlay.active {
+      visibility:visible;
+      opacity:1;
+    }
+    .pulse {
+      width:80px;height:80px;
+      background:#28c76f;
+      border-radius:50%;
+      animation:pulse 1.5s infinite;
+      box-shadow:0 0 20px rgba(40,199,111,0.8);
+    }
+    @keyframes pulse {
+      0% {transform:scale(0.9);opacity:0.8;}
+      50% {transform:scale(1.2);opacity:0.5;}
+      100% {transform:scale(0.9);opacity:0.8;}
     }
   </style>
 </head>
@@ -73,173 +100,124 @@
   </div>
 
   <div class="deposit-list">
-    <!-- Damane Cash -> dc/ -->
-    <a href="dc/" class="link-card" aria-label="Damane Cash (dc)">
+    <!-- Damane Cash -->
+    <div class="link-card" data-href="dc/">
       <div class="deposit-left">
-        <div class="logo-box">
-          <img data-key="damane" alt="damane-cash">
-        </div>
-        <div class="deposit-text">
-          <span>Deposit with</span>
-          <b>Damane Cash</b>
-          min : 100.00 MAD
-        </div>
-      </div>
-      <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
-
-    <!-- Chaabi Pay -> ch/ -->
-    <a href="ch/" class="link-card" aria-label="Chaabi Pay (ch)">
-      <div class="deposit-left">
-        <div class="logo-box">
-          <img data-key="chaabi" alt="chaabi-pay">
-        </div>
-        <div class="deposit-text">
-          <span>Deposit with</span>
-          <b>Chaabi Pay</b>
-          min : 50.00 MAD
-        </div>
+        <div class="logo-box"><img data-key="damane" alt="damane-cash"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Damane Cash</b> min : 100.00 MAD</div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
+    </div>
 
-    <!-- Barid Cash -> bc/ -->
-    <a href="bc/" class="link-card" aria-label="Barid Cash (bc)">
+    <!-- Chaabi Pay -->
+    <div class="link-card" data-href="ch/">
       <div class="deposit-left">
-        <div class="logo-box">
-          <img data-key="baridcash" alt="barid-cash">
-        </div>
-        <div class="deposit-text">
-          <span>Deposit with</span>
-          <b>Barid Cash</b>
-          100.00 MAD
-          الحد الأدنى
-        </div>
+        <div class="logo-box"><img data-key="chaabi" alt="chaabi-pay"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Chaabi Pay</b> min : 50.00 MAD</div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
+    </div>
 
-    <!-- Cash Plus -> cp/ -->
-    <a href="cp/" class="link-card" aria-label="Cash Plus (cp)">
+    <!-- Barid Cash -->
+    <div class="link-card" data-href="bc/">
       <div class="deposit-left">
-        <div class="logo-box">
-          <img data-key="cashplus" alt="cash-plus">
-        </div>
-        <div class="deposit-text">
-          <span>Deposit with</span>
-          <b>Cash Plus</b>
-          min : 100.00 MAD
-        </div>
+        <div class="logo-box"><img data-key="baridcash" alt="barid-cash"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Barid Cash</b> 100.00 MAD الحد الأدنى</div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
+    </div>
 
-    <!-- Albarid Bank -> ab/ -->
-    <a href="ab/" class="link-card" aria-label="Albarid Bank (ab)">
+    <!-- Cash Plus -->
+    <div class="link-card" data-href="cp/">
       <div class="deposit-left">
-        <div class="logo-box">
-          <img data-key="albarid" alt="albarid-bank">
-        </div>
-        <div class="deposit-text">
-          <span>Deposit with</span>
-          <b>Albarid Bank</b>
-          100.00 MAD
-          الحد الأدنى
-        </div>
+        <div class="logo-box"><img data-key="cashplus" alt="cash-plus"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Cash Plus</b> min : 100.00 MAD</div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
+    </div>
 
-    <!-- Bank Populaire -> bp/ -->
-    <a href="bp/" class="link-card" aria-label="Bank Populaire (bp)">
+    <!-- Albarid Bank -->
+    <div class="link-card" data-href="ab/">
       <div class="deposit-left">
-        <div class="logo-box">
-          <img data-key="populaire" alt="bank-populaire">
-        </div>
-        <div class="deposit-text">
-          <span>Deposit with</span>
-          <b>Bank Populaire</b>
-          min : 400.00 MAD / max : 10 000.00 MAD
-        </div>
+        <div class="logo-box"><img data-key="albarid" alt="albarid-bank"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Albarid Bank</b> 100.00 MAD الحد الأدنى</div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
+    </div>
 
-    <!-- Attijari Bank -> at/ -->
-    <a href="at/" class="link-card" aria-label="Attijari Bank (at)">
+    <!-- Bank Populaire -->
+    <div class="link-card" data-href="bp/">
       <div class="deposit-left">
-        <div class="logo-box">
-          <img data-key="attijari" alt="attijari-bank">
-        </div>
-        <div class="deposit-text">
-          <span>Deposit with</span>
-          <b>Attijari Bank</b>
-          100.00 MAD
-          الحد الأدنى
-        </div>
+        <div class="logo-box"><img data-key="populaire" alt="bank-populaire"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Bank Populaire</b> min : 400.00 MAD / max : 10 000.00 MAD</div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
+    </div>
 
-    <!-- Bankalik -> bk/ -->
-    <a href="bk/" class="link-card" aria-label="Bankalik (bk)">
+    <!-- Attijari Bank -->
+    <div class="link-card" data-href="at/">
       <div class="deposit-left">
-        <div class="logo-box">
-          <img data-key="bankalik" alt="bankalik">
-        </div>
-        <div class="deposit-text">
-          <span>Deposit with</span>
-          <b>Bankalik</b>
-          50.00 MAD
-          الحد الأدنى
-        </div>
+        <div class="logo-box"><img data-key="attijari" alt="attijari-bank"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Attijari Bank</b> 100.00 MAD الحد الأدنى</div>
       </div>
       <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
+    </div>
+
+    <!-- Bankalik -->
+    <div class="link-card" data-href="bk/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="bankalik" alt="bankalik"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Bankalik</b> 50.00 MAD الحد الأدنى</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+  </div>
+
+  <!-- شاشة التأثير -->
+  <div class="overlay" id="overlay">
+    <div class="pulse"></div>
   </div>
 
   <script>
     const encodedUrls = {
-      damane:    "aHR0cHM6Ly9pLnBvc3RpbWcuY2MveFRxSjBSclAvbG9nby1kYW1hbmVjYXNoLXZmLWJiMS5wbmc=",
-      chaabi:    "aHR0cHM6Ly9pLnBvc3RpbWcuY2MvemZOR1J3UTYvY2hhYWJpLXBheS1tb3JvY2NvLnBuZw==",
-      baridcash: "aHR0cHM6Ly9pLnBvc3RpbWcuY2MvWll4RjlqTXQvQmFyaWQtQ2FzaC5wbmc=",
-      cashplus:  "aHR0cHM6Ly9pLnBvc3RpbWcuY2MvUXR5RFNjNlgvY2FzaC1wbHVzLnBuZw==",
-      albarid:   "aHR0cHM6Ly9paWxpLmlvL0t4WjBxTGcucG5n",
-      populaire: "aHR0cHM6Ly9paWxpLmlvL0t4WlVVOVMucG5n",
-      attijari:  "aHR0cHM6Ly9paWxpLmlvL0t4WmdpYnQucG5n",
-      bankalik:  "aHR0cHM6Ly9paWxpLmlvL0t4WjR0UzQucG5n"
+      damane:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MveFRxSjBSclAvbG9nby1kYW1hbmVjYXNoLXZmLWJiMS5wbmc=",
+      chaabi:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvemZOR1J3UTYvY2hhYWJpLXBheS1tb3JvY2NvLnBuZw==",
+      baridcash:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvWll4RjlqTXQvQmFyaWQtQ2FzaC5wbmc=",
+      cashplus:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvUXR5RFNjNlgvY2FzaC1wbHVzLnBuZw==",
+      albarid:"aHR0cHM6Ly9paWxpLmlvL0t4WjBxTGcucG5n",
+      populaire:"aHR0cHM6Ly9paWxpLmlvL0t4WlVVOVMucG5n",
+      attijari:"aHR0cHM6Ly9paWxpLmlvL0t4WmdpYnQucG5n",
+      bankalik:"aHR0cHM6Ly9paWxpLmlvL0t4WjR0UzQucG5n"
     };
     const LS_PREFIX = "fandi_img_b64_";
-    function blobToDataURL(blob){
-      return new Promise((resolve,reject)=>{
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    }
+    function blobToDataURL(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(blob);});}
     async function ensureImageDataUrl(key){
-      const cached = localStorage.getItem(LS_PREFIX + key);
-      if (cached) return cached;
-      const url = atob(encodedUrls[key]);
-      const resp = await fetch(url, { mode: "cors", cache: "force-cache" });
-      const blob = await resp.blob();
-      const dataUrl = await blobToDataURL(blob);
-      try { localStorage.setItem(LS_PREFIX + key, dataUrl); } catch(e){}
+      const cached=localStorage.getItem(LS_PREFIX+key);
+      if(cached) return cached;
+      const url=atob(encodedUrls[key]);
+      const resp=await fetch(url);const blob=await resp.blob();
+      const dataUrl=await blobToDataURL(blob);
+      try{localStorage.setItem(LS_PREFIX+key,dataUrl);}catch(e){}
       return dataUrl;
     }
     async function initLogos(){
-      const imgs = document.querySelectorAll('img[data-key]');
-      for (const img of imgs){
-        const key = img.getAttribute('data-key');
-        try{
-          const dataUrl = await ensureImageDataUrl(key);
-          img.src = dataUrl;
-          img.removeAttribute('data-key');
-        }catch(e){}
+      const imgs=document.querySelectorAll('img[data-key]');
+      for(const img of imgs){
+        const key=img.getAttribute('data-key');
+        try{const dataUrl=await ensureImageDataUrl(key);img.src=dataUrl;img.removeAttribute('data-key');}catch(e){}
       }
     }
     initLogos();
+
+    // التأثير قبل الانتقال
+    const overlay=document.getElementById('overlay');
+    document.querySelectorAll('.link-card').forEach(card=>{
+      card.addEventListener('click',()=>{
+        const target=card.getAttribute('data-href');
+        overlay.classList.add('active');
+        setTimeout(()=>{window.location=target;},1500);
+      });
+    });
   </script>
 </body>
 </html>
