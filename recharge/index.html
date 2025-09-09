@@ -70,7 +70,7 @@
       background:#fff;
       color:#555;
       padding:20px 30px;
-      border-radius:4px;
+      border-radius:0; /* حواف حادة */
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -186,7 +186,7 @@
   </div>
 
   <script>
-    /* روابط مشفرة للصور */
+    /* روابط الصور مشفرة */
     const encodedUrls = {
       damane:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MveFRxSjBSclAvbG9nby1kYW1hbmVjYXNoLXZmLWJiMS5wbmc=",
       chaabi:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvemZOR1J3UTYvY2hhYWJpLXBheS1tb3JvY2NvLnBuZw==",
@@ -241,7 +241,7 @@
       });
     });
 
-    // عند الرجوع أو إعادة التحميل ينطفئ overlay
+    // عند الرجوع أو إعادة التحميل overlay ينطفئ
     window.addEventListener("pageshow", ()=> {
       overlay.classList.remove("active");
     });
