@@ -36,7 +36,7 @@
       position:relative;
       width:90%;
       max-width:420px;
-      height:90vh;
+      max-height:90vh;
       background:#fff;
       display:flex;
       flex-direction:column;
@@ -44,12 +44,12 @@
       box-shadow:0 20px 50px rgba(0,0,0,0.5);
       overflow:hidden;
     }
-    .modal iframe {
+    .modal-body {
       flex:1;
-      border:none;
-      width:100%;
-      height:100%;
-      display:block;
+      overflow:auto;
+      padding:15px;
+      background:#fff;
+      color:#000;
     }
 
     /* زر الإغلاق */
@@ -105,7 +105,7 @@
   <div class="modal" id="modal">
     <div class="modal-box">
       <button class="close-inside" id="closeModal">×</button>
-      <iframe id="modalFrame" onload="cleanFrame(this)"></iframe>
+      <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
 
@@ -127,43 +127,34 @@
     async function initLogos(){document.querySelectorAll('img[data-key]').forEach(async img=>{const key=img.getAttribute('data-key');try{img.src=await ensureImageDataUrl(key);}catch(e){}});}
     initLogos();
 
-    /* تنظيف الفراغ داخل iframe */
-    function cleanFrame(frame){
-      try{
-        const doc=frame.contentDocument || frame.contentWindow.document;
-        if(doc){
-          const style=doc.createElement('style');
-          style.innerHTML=`
-            html, body {
-              margin:0 !important;
-              padding:0 !important;
-              height:100% !important;
-              background:#fff !important;
-              box-sizing:border-box;
-            }
-          `;
-          doc.head.appendChild(style);
-        }
-      }catch(e){}
-    }
-
-    /* فتح وإغلاق المودال */
+    /* Modal logic */
     const overlay=document.getElementById('overlay');
     const modal=document.getElementById('modal');
-    const modalFrame=document.getElementById('modalFrame');
+    const modalBody=document.getElementById('modalBody');
     const closeModal=document.getElementById('closeModal');
     let currentTimeout=null;
 
     document.querySelectorAll('.link-card').forEach(card=>{
-      card.addEventListener('click',()=>{
+      card.addEventListener('click',async()=>{
         const url=card.getAttribute('data-href');
         if(currentTimeout){clearTimeout(currentTimeout);currentTimeout=null;}
         modal.classList.remove('active');
-        modalFrame.src="";
+        modalBody.innerHTML="";
         overlay.classList.add('active');
-        currentTimeout=setTimeout(()=>{
-          modalFrame.src=url;
-          modal.classList.add('active');
+
+        currentTimeout=setTimeout(async()=>{
+          try {
+            const resp=await fetch(url);
+            let html=await resp.text();
+            const temp=document.createElement('div');
+            temp.innerHTML=html;
+            let part=temp.querySelector('main')||temp.querySelector('.content')||temp.querySelector('#app')||temp.querySelector('body')||temp;
+            modalBody.innerHTML=part.innerHTML;
+            modal.classList.add('active');
+          } catch(e){
+            modalBody.innerHTML="<p style='color:red;padding:10px'>Erreur de chargement</p>";
+            modal.classList.add('active');
+          }
           overlay.classList.remove('active');
           currentTimeout=null;
         },3000);
@@ -172,7 +163,7 @@
 
     closeModal.addEventListener('click',()=>{
       modal.classList.remove('active');
-      modalFrame.src="";
+      modalBody.innerHTML="";
       overlay.classList.remove('active');
       if(currentTimeout){clearTimeout(currentTimeout);currentTimeout=null;}
     });
