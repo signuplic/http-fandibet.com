@@ -50,14 +50,6 @@
       padding:15px;
       background:#fff;
       color:#000;
-      word-wrap:break-word;
-    }
-    .modal-body img,
-    .modal-body video,
-    .modal-body iframe {
-      max-width:100%;
-      height:auto;
-      display:block;
     }
 
     /* زر الإغلاق */
@@ -157,18 +149,10 @@
             const temp=document.createElement('div');
             temp.innerHTML=html;
 
-            /* ناخد غير المحتوى الأساسي */
             let part=temp.querySelector('main')||temp.querySelector('.content')||temp.querySelector('#app')||temp.querySelector('form')||temp;
-
             modalBody.innerHTML=part.innerHTML;
-
-            /* إصلاح الصور */
-            const imgs = modalBody.querySelectorAll("img");
-            imgs.forEach(img=>{
-              img.style.maxWidth="100%";
-              img.style.height="auto";
-              img.style.display="block";
-            });
+            modalBody.style.background="#fff";
+            modalBody.style.color="#000";
 
             modal.classList.add('active');
           } catch(e){
