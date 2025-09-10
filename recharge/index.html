@@ -5,10 +5,10 @@
   <title>fandibet</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
   <style>
-    /* موقع رئيسي يبقى غامق */
+    /* موقع رئيسي دايماً غامق */
     body {
       margin:0;
-      background:#0b0c10; 
+      background:#0b0c10;
       color:#fff;
       font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     }
@@ -29,10 +29,11 @@
     .arrow {width:18px;height:18px;fill:#28c76f;flex-shrink:0;}
     @media(max-width:420px){.link-card{padding:10px;}.logo-box{width:60px;height:35px;}.deposit-text b{font-size:13px;}}
 
-    /* Overlay (حاجز كامل) */
+    /* Overlay */
     .overlay {
       position:fixed;inset:0;
       background:rgba(0,0,0,0.85);
+      backdrop-filter:blur(4px);
       display:flex;align-items:center;justify-content:center;
       z-index:999;
       clip-path:inset(0 100% 0 0);
@@ -56,15 +57,15 @@
       width:90%;
       max-width:420px;
       max-height:90vh;
-      background:#fff;   /* الصندوق أبيض أنيق */
+      background:#fff;
       color:#000;
       display:flex;flex-direction:column;
-      border-radius:0;
+      border-radius:6px;
       box-shadow:0 20px 50px rgba(0,0,0,0.5);
       overflow:auto;
-      transform:translateX(-100%);
-      transition:transform 0.5s ease;
+      transform:translateX(-40px);
       opacity:0;
+      transition:all 0.4s ease;
     }
     .modal.active .modal-box {
       transform:translateX(0);
@@ -72,18 +73,28 @@
       pointer-events:auto;
     }
     .modal.closing .modal-box {
-      transform:translateX(-100%);
+      transform:translateX(-40px);
       opacity:0;
     }
 
-    .modal-body {flex:1;padding:15px;background:#fff;color:#000;}
+    .modal-body {
+      flex:1;
+      padding:15px;
+      background:#fff;
+      color:#000;
+      overflow:auto;
+    }
+    .modal-body::-webkit-scrollbar {width:6px;}
+    .modal-body::-webkit-scrollbar-thumb {background:#ccc;border-radius:3px;}
+    .modal-body::-webkit-scrollbar-track {background:transparent;}
 
-    /* زر الإغلاق */
+    /* زر الإغلاق SVG */
     .close-inside {
       position:absolute;top:8px;right:8px;
-      background:none;color:#000;border:none;
-      font-size:22px;cursor:pointer;z-index:1100;line-height:1;
+      background:none;border:none;cursor:pointer;
+      z-index:1100;
     }
+    .close-inside svg {width:20px;height:20px;stroke:#000;stroke-width:2;}
   </style>
 </head>
 <body>
@@ -123,27 +134,18 @@
   <!-- Modal -->
   <div class="modal" id="modal">
     <div class="modal-box">
-      <button class="close-inside" id="closeModal">×</button>
+      <button class="close-inside" id="closeModal">
+        <svg viewBox="0 0 24 24" fill="none"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </button>
       <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
 
   <script>
-    /* تحميل الصور المشفرة */
-    const encodedUrls={
-      damane:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MveFRxSjBSclAvbG9nby1kYW1hbmVjYXNoLXZmLWJiMS5wbmc=",
-      chaabi:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvemZOR1J3UTYvY2hhYWJpLXBheS1tb3JvY2NvLnBuZw==",
-      baridcash:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvWll4RjlqTXQvQmFyaWQtQ2FzaC5wbmc=",
-      cashplus:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvUXR5RFNjNlgvY2FzaC1wbHVzLnBuZw==",
-      albarid:"aHR0cHM6Ly9paWxpLmlvL0t4WjBxTGcucG5n",
-      populaire:"aHR0cHM6Ly9paWxpLmlvL0t4WlVVOVMucG5n",
-      attijari:"aHR0cHM6Ly9paWxpLmlvL0t4WmdpYnQucG5n",
-      bankalik:"aHR0cHM6Ly9paWxpLmlvL0t4WjR0UzQucG5n"
-    };
-    const LS_PREFIX="fandi_img_b64_";
-    function blobToDataURL(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(blob);});}
-    async function ensureImageDataUrl(key){const cached=localStorage.getItem(LS_PREFIX+key);if(cached)return cached;const url=atob(encodedUrls[key]);const resp=await fetch(url);const blob=await resp.blob();const dataUrl=await blobToDataURL(blob);try{localStorage.setItem(LS_PREFIX+key,dataUrl);}catch(e){}return dataUrl;}
-    async function initLogos(){document.querySelectorAll('img[data-key]').forEach(async img=>{const key=img.getAttribute('data-key');try{img.src=await ensureImageDataUrl(key);}catch(e){}});}
+    /* صور */
+    const encodedUrls={damane:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MveFRxSjBSclAvbG9nby1kYW1hbmVjYXNoLXZmLWJiMS5wbmc=",chaabi:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvemZOR1J3UTYvY2hhYWJpLXBheS1tb3JvY2NvLnBuZw==",baridcash:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvWll4RjlqTXQvQmFyaWQtQ2FzaC5wbmc=",cashplus:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvUXR5RFNjNlgvY2FzaC1wbHVzLnBuZw==",albarid:"aHR0cHM6Ly9paWxpLmlvL0t4WjBxTGcucG5n",populaire:"aHR0cHM6Ly9paWxpLmlvL0t4WlVVOVMucG5n",attijari:"aHR0cHM6Ly9paWxpLmlvL0t4WmdpYnQucG5n",bankalik:"aHR0cHM6Ly9paWxpLmlvL0t4WjR0UzQucG5n"};
+    async function ensureImageDataUrl(key){const url=atob(encodedUrls[key]);const resp=await fetch(url);const blob=await resp.blob();return URL.createObjectURL(blob);}
+    async function initLogos(){document.querySelectorAll('img[data-key]').forEach(async img=>{img.src=await ensureImageDataUrl(img.getAttribute('data-key'));});}
     initLogos();
 
     /* Modal logic */
@@ -151,32 +153,31 @@
     const modal=document.getElementById('modal');
     const modalBody=document.getElementById('modalBody');
     const closeModal=document.getElementById('closeModal');
-    let currentTimeout=null;
 
     document.querySelectorAll('.link-card').forEach(card=>{
       card.addEventListener('click',async()=>{
         const url=card.getAttribute('data-href');
-        if(currentTimeout){clearTimeout(currentTimeout);currentTimeout=null;}
         modal.classList.remove('active','closing');
         modalBody.innerHTML="";
         overlay.classList.add('active');
-
-        currentTimeout=setTimeout(async()=>{
-          try {
-            const resp=await fetch(url);
-            let html=await resp.text();
-            const temp=document.createElement('div');
-            temp.innerHTML=html;
-            let part=temp.querySelector('main')||temp.querySelector('.content')||temp.querySelector('#app')||temp.querySelector('body')||temp;
+        const start=Date.now();
+        try {
+          const resp=await fetch(url);
+          let html=await resp.text();
+          const temp=document.createElement('div');
+          temp.innerHTML=html;
+          let part=temp.querySelector('main')||temp.querySelector('.content')||temp.querySelector('#app')||temp.querySelector('body')||temp;
+          const wait=Math.max(800-(Date.now()-start),0);
+          setTimeout(()=>{
             modalBody.innerHTML=part.innerHTML;
             modal.classList.add('active');
-          } catch(e){
-            modalBody.innerHTML="<p style='color:red;padding:10px'>Erreur de chargement</p>";
-            modal.classList.add('active');
-          }
-          overlay.classList.remove('closing');
-          currentTimeout=null;
-        },3000);
+            overlay.classList.remove('active');
+          },wait);
+        } catch(e){
+          modalBody.innerHTML=`<p style='color:red;padding:10px'>Erreur de chargement</p><button onclick="location.reload()">Retry</button>`;
+          modal.classList.add('active');
+          overlay.classList.remove('active');
+        }
       });
     });
 
@@ -187,7 +188,7 @@
         modal.classList.remove('active','closing');
         overlay.classList.remove('active','closing');
         modalBody.innerHTML="";
-      },500);
+      },400);
     });
   </script>
 </body>
