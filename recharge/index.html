@@ -29,23 +29,17 @@
     .spinner {width:24px;height:24px;border:3px solid rgba(40,199,111,0.3);border-top-color:#28c76f;border-radius:50%;animation:spin 0.9s linear infinite;flex-shrink:0;}
     @keyframes spin {to{transform:rotate(360deg);}}
 
-    /* Modal */
+    /* Modal (بدون تأثيرات على الخلفية) */
     .modal {
       position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
       z-index:1000;
-      visibility:hidden;
-      opacity:0;
-      transition:opacity 0.25s ease;
-      pointer-events:none; /* ما يقطعش التفاعل مع الخلفية */
+      display:none; /* مخفي */
     }
     .modal.active {
-      visibility:visible;
-      opacity:1;
-      pointer-events:auto;
+      display:flex; /* يظهر */
     }
     .modal-box {
       position:relative;
@@ -108,7 +102,7 @@
     <div class="link-card" data-href="bk/"><div class="deposit-left"><div class="logo-box"><img data-key="bankalik"></div><div class="deposit-text"><span>Deposit with</span><b>Bankalik</b> min : 50.00 MAD</div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
   </div>
 
-  <!-- Overlay -->
+  <!-- Overlay (chargement) -->
   <div class="overlay" id="overlay">
     <div class="loading-box">
       <span>Chargement...</span>
@@ -184,4 +178,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
