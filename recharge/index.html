@@ -22,7 +22,7 @@
     .arrow {width:18px;height:18px;fill:#28c76f;flex-shrink:0;}
     @media(max-width:420px){.link-card{padding:10px;}.logo-box{width:60px;height:35px;}.deposit-text b{font-size:13px;}}
 
-    /* Overlay */
+    /* Overlay (chargement) */
     .overlay {position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:999;visibility:hidden;opacity:0;transition:opacity 0.25s ease;}
     .overlay.active {visibility:visible;opacity:1;}
     .loading-box {background:#fff;color:#555;padding:20px 30px;border-radius:0;display:flex;align-items:center;justify-content:space-between;min-width:240px;font-size:15px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,0.4);}
@@ -30,8 +30,23 @@
     @keyframes spin {to{transform:rotate(360deg);}}
 
     /* Modal */
-    .modal {position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:1000;visibility:hidden;opacity:0;transition:opacity 0.25s ease;}
-    .modal.active {visibility:visible;opacity:1;}
+    .modal {
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      visibility:hidden;
+      opacity:0;
+      transition:opacity 0.25s ease;
+      pointer-events:none; /* ما يقطعش التفاعل مع الخلفية */
+    }
+    .modal.active {
+      visibility:visible;
+      opacity:1;
+      pointer-events:auto;
+    }
     .modal-box {
       position:relative;
       width:90%;
@@ -148,12 +163,8 @@
             let html=await resp.text();
             const temp=document.createElement('div');
             temp.innerHTML=html;
-
-            let part=temp.querySelector('main')||temp.querySelector('.content')||temp.querySelector('#app')||temp.querySelector('form')||temp;
+            let part=temp.querySelector('main')||temp.querySelector('.content')||temp.querySelector('#app')||temp.querySelector('body')||temp;
             modalBody.innerHTML=part.innerHTML;
-            modalBody.style.background="#fff";
-            modalBody.style.color="#000";
-
             modal.classList.add('active');
           } catch(e){
             modalBody.innerHTML="<p style='color:red;padding:10px'>Erreur de chargement</p>";
@@ -173,4 +184,4 @@
     });
   </script>
 </body>
-</html>
+  </html>
