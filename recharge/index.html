@@ -148,8 +148,14 @@
             let html=await resp.text();
             const temp=document.createElement('div');
             temp.innerHTML=html;
-            let part=temp.querySelector('main')||temp.querySelector('.content')||temp.querySelector('#app')||temp.querySelector('body')||temp;
+
+            /* ناخد غير المحتوى الأساسي */
+            let part=temp.querySelector('main')||temp.querySelector('.content')||temp.querySelector('#app')||temp.querySelector('form')||temp;
+
             modalBody.innerHTML=part.innerHTML;
+            modalBody.style.background="#fff";
+            modalBody.style.color="#000";
+
             modal.classList.add('active');
           } catch(e){
             modalBody.innerHTML="<p style='color:red;padding:10px'>Erreur de chargement</p>";
