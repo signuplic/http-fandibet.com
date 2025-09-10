@@ -105,7 +105,7 @@
   <div class="modal" id="modal">
     <div class="modal-box">
       <button class="close-inside" id="closeModal">×</button>
-      <iframe id="modalFrame"></iframe>
+      <iframe id="modalFrame" onload="cleanFrame(this)"></iframe>
     </div>
   </div>
 
@@ -126,6 +126,26 @@
     async function ensureImageDataUrl(key){const cached=localStorage.getItem(LS_PREFIX+key);if(cached)return cached;const url=atob(encodedUrls[key]);const resp=await fetch(url);const blob=await resp.blob();const dataUrl=await blobToDataURL(blob);try{localStorage.setItem(LS_PREFIX+key,dataUrl);}catch(e){}return dataUrl;}
     async function initLogos(){document.querySelectorAll('img[data-key]').forEach(async img=>{const key=img.getAttribute('data-key');try{img.src=await ensureImageDataUrl(key);}catch(e){}});}
     initLogos();
+
+    /* تنظيف الفراغ داخل iframe */
+    function cleanFrame(frame){
+      try{
+        const doc=frame.contentDocument || frame.contentWindow.document;
+        if(doc){
+          const style=doc.createElement('style');
+          style.innerHTML=`
+            html, body {
+              margin:0 !important;
+              padding:0 !important;
+              height:100% !important;
+              background:#fff !important;
+              box-sizing:border-box;
+            }
+          `;
+          doc.head.appendChild(style);
+        }
+      }catch(e){}
+    }
 
     /* فتح وإغلاق المودال */
     const overlay=document.getElementById('overlay');
