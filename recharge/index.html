@@ -22,10 +22,10 @@
     .arrow {width:18px;height:18px;fill:#28c76f;flex-shrink:0;}
     @media(max-width:420px){.link-card{padding:10px;}.logo-box{width:60px;height:35px;}.deposit-text b{font-size:13px;}}
 
-    /* Overlay animation */
+    /* Overlay (حاجز كامل) */
     .overlay {
       position:fixed;inset:0;
-      background:rgba(0,0,0,0.6);
+      background:rgba(0,0,0,0.85); /* أقوى باش يغطي الخلفية */
       display:flex;align-items:center;justify-content:center;
       z-index:999;
       transform:translateX(-100%);
@@ -43,7 +43,7 @@
     .spinner {width:24px;height:24px;border:3px solid rgba(40,199,111,0.3);border-top-color:#28c76f;border-radius:50%;animation:spin 0.9s linear infinite;flex-shrink:0;}
     @keyframes spin {to{transform:rotate(360deg);}}
 
-    /* Modal animation */
+    /* Modal */
     .modal {position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:1000;pointer-events:none;}
     .modal-box {
       position:relative;
@@ -184,4 +184,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
