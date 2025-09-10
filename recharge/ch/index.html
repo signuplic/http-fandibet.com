@@ -1,1 +1,97 @@
-123456
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Deposit Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <style>
+    body {margin:0;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#222;}
+    .form-container {display:flex;flex-direction:column;gap:15px;}
+    .form-group {display:flex;flex-direction:column;gap:6px;}
+    label {font-size:14px;font-weight:500;color:#333;}
+    input[type="text"], input[type="number"] {
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:4px;
+      font-size:14px;
+      outline:none;
+    }
+    input[type="text"]:focus, input[type="number"]:focus {border-color:#28c76f;}
+    .upload-box {
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .upload-box label {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:40px;height:40px;
+      background:#f0f0f0;
+      border:1px dashed #aaa;
+      border-radius:4px;
+      cursor:pointer;
+      font-size:22px;
+      color:#555;
+    }
+    .upload-box input {display:none;}
+    .upload-preview {flex:1;max-height:60px;object-fit:contain;display:none;}
+    .btn-confirm {
+      background:#28c76f;
+      color:#fff;
+      font-size:15px;
+      padding:12px;
+      text-align:center;
+      border:none;
+      border-radius:4px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn-confirm:hover {background:#22b05b;}
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <!-- خيار المبلغ -->
+    <div class="form-group">
+      <label for="amount">اختر المبلغ</label>
+      <input type="number" id="amount" placeholder="أدخل المبلغ بالدرهم" />
+    </div>
+
+    <!-- خيار الاسم -->
+    <div class="form-group">
+      <label for="name">اكتب اسمك</label>
+      <input type="text" id="name" placeholder="اسمك الكامل" />
+    </div>
+
+    <!-- رفع صورة -->
+    <div class="form-group">
+      <label>أضف صورة</label>
+      <div class="upload-box">
+        <label for="fileInput">+</label>
+        <input type="file" id="fileInput" accept="image/*" />
+        <img id="preview" class="upload-preview" />
+      </div>
+    </div>
+
+    <!-- زر التأكيد -->
+    <button class="btn-confirm">تأكيد</button>
+  </div>
+
+  <script>
+    const fileInput=document.getElementById('fileInput');
+    const preview=document.getElementById('preview');
+    fileInput.addEventListener('change',()=>{
+      const file=fileInput.files[0];
+      if(file){
+        const reader=new FileReader();
+        reader.onload=e=>{
+          preview.src=e.target.result;
+          preview.style.display="block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
