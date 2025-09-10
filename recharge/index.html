@@ -21,12 +21,14 @@
     .deposit-text b {font-size:14px;font-weight:600;}
     .arrow {width:18px;height:18px;fill:#28c76f;flex-shrink:0;}
     @media(max-width:420px){.link-card{padding:10px;}.logo-box{width:60px;height:35px;}.deposit-text b{font-size:13px;}}
+
     /* Overlay */
     .overlay {position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:999;visibility:hidden;opacity:0;transition:opacity 0.25s ease;}
     .overlay.active {visibility:visible;opacity:1;}
     .loading-box {background:#fff;color:#555;padding:20px 30px;border-radius:0;display:flex;align-items:center;justify-content:space-between;min-width:240px;font-size:15px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,0.4);}
     .spinner {width:24px;height:24px;border:3px solid rgba(40,199,111,0.3);border-top-color:#28c76f;border-radius:50%;animation:spin 0.9s linear infinite;flex-shrink:0;}
     @keyframes spin {to{transform:rotate(360deg);}}
+
     /* Modal */
     .modal {position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:1000;visibility:hidden;opacity:0;transition:opacity 0.25s ease;}
     .modal.active {visibility:visible;opacity:1;}
@@ -52,22 +54,77 @@
   </div>
 
   <div class="deposit-list">
-    <!-- Damane -->
-    <div class="link-card" data-href="dc/"><div class="deposit-left"><div class="logo-box"><img data-key="damane"></div><div class="deposit-text"><span>Deposit with</span><b>Damane Cash</b></div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
-    <!-- Chaabi -->
-    <div class="link-card" data-href="ch/"><div class="deposit-left"><div class="logo-box"><img data-key="chaabi"></div><div class="deposit-text"><span>Deposit with</span><b>Chaabi Pay</b></div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
+    <!-- Damane Cash -->
+    <div class="link-card" data-href="dc/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="damane"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Damane Cash</b> min : 100.00 MAD</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+
+    <!-- Chaabi Pay -->
+    <div class="link-card" data-href="ch/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="chaabi"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Chaabi Pay</b> min : 50.00 MAD</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+
     <!-- Barid Cash -->
-    <div class="link-card" data-href="bc/"><div class="deposit-left"><div class="logo-box"><img data-key="baridcash"></div><div class="deposit-text"><span>Deposit with</span><b>Barid Cash</b></div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="link-card" data-href="bc/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="baridcash"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Barid Cash</b> 100.00 MAD (min)</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+
     <!-- Cash Plus -->
-    <div class="link-card" data-href="cp/"><div class="deposit-left"><div class="logo-box"><img data-key="cashplus"></div><div class="deposit-text"><span>Deposit with</span><b>Cash Plus</b></div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
-    <!-- Albarid -->
-    <div class="link-card" data-href="ab/"><div class="deposit-left"><div class="logo-box"><img data-key="albarid"></div><div class="deposit-text"><span>Deposit with</span><b>Albarid Bank</b></div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
-    <!-- Populaire -->
-    <div class="link-card" data-href="bp/"><div class="deposit-left"><div class="logo-box"><img data-key="populaire"></div><div class="deposit-text"><span>Deposit with</span><b>Bank Populaire</b></div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
-    <!-- Attijari -->
-    <div class="link-card" data-href="at/"><div class="deposit-left"><div class="logo-box"><img data-key="attijari"></div><div class="deposit-text"><span>Deposit with</span><b>Attijari Bank</b></div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="link-card" data-href="cp/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="cashplus"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Cash Plus</b> min : 100.00 MAD</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+
+    <!-- Albarid Bank -->
+    <div class="link-card" data-href="ab/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="albarid"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Albarid Bank</b> 100.00 MAD (min)</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+
+    <!-- Bank Populaire -->
+    <div class="link-card" data-href="bp/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="populaire"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Bank Populaire</b> min : 400.00 MAD / max : 10 000.00 MAD</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+
+    <!-- Attijari Bank -->
+    <div class="link-card" data-href="at/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="attijari"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Attijari Bank</b> 100.00 MAD (min)</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+
     <!-- Bankalik -->
-    <div class="link-card" data-href="bk/"><div class="deposit-left"><div class="logo-box"><img data-key="bankalik"></div><div class="deposit-text"><span>Deposit with</span><b>Bankalik</b></div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="link-card" data-href="bk/">
+      <div class="deposit-left">
+        <div class="logo-box"><img data-key="bankalik"></div>
+        <div class="deposit-text"><span>Deposit with</span><b>Bankalik</b> 50.00 MAD (min)</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
   </div>
 
   <!-- Overlay -->
@@ -87,7 +144,7 @@
   </div>
 
   <script>
-    /* صور */
+    /* صور مشفرة */
     const encodedUrls={
       damane:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MveFRxSjBSclAvbG9nby1kYW1hbmVjYXNoLXZmLWJiMS5wbmc=",
       chaabi:"aHR0cHM6Ly9pLnBvc3RpbWcuY2MvemZOR1J3UTYvY2hhYWJpLXBheS1tb3JvY2NvLnBuZw==",
@@ -120,12 +177,18 @@
           let part=temp.querySelector('main')||temp.querySelector('#app')||temp.querySelector('.content')||temp.querySelector('body')||temp;
           modalContent.innerHTML=part.innerHTML;
           modal.classList.add('active');
+        }catch(e){
+          alert("Erreur de chargement");
+        }finally{
           overlay.classList.remove('active');
-        }catch(e){overlay.classList.remove('active');alert("Erreur de chargement");}
+        }
       });
     });
 
-    closeModal.addEventListener('click',()=>{modal.classList.remove('active');modalContent.innerHTML="";});
+    closeModal.addEventListener('click',()=>{
+      modal.classList.remove('active');
+      modalContent.innerHTML=""; // إعادة التهيئة
+    });
   </script>
 </body>
 </html>
