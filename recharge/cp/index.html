@@ -6,38 +6,37 @@
   <title>mobicashservices</title>
   <style>
     *{box-sizing:border-box;font-family:Arial,sans-serif}
-    html,body{margin:0;padding:0;background:transparent;color:#000}
-    .main-box{width:100%;margin:0;background:#fff}
-    .logo-box{text-align:center;padding:10px}
-    .logo-box img{height:40px;transition:transform .3s ease;cursor:pointer}
-    .logo-box img.active,.logo-box img:hover{transform:scale(.95)}
+    html,body{margin:0;padding:0;background:transparent;color:#fff}
+    .main-box{width:100%;margin:0;background:#0b0c10}
     .form-wrapper{padding:10px 0}
     .form-content{padding:0 10px;max-width:100%;margin:auto}
-    .instruction{font-size:14px;color:#001F54;line-height:1.3;margin:0 0 8px;text-align:left}
-    .payment-line{display:flex;align-items:center;justify-content:flex-start;text-align:left;margin:4px 0;flex-wrap:nowrap}
-    .blue-text{font-size:14px;color:#001F54}
+    .payment-line{display:flex;align-items:center;justify-content:flex-start;text-align:left;margin:6px 0;flex-wrap:nowrap}
+    .blue-text{font-size:14px;color:#28c76f}
     .blue-text strong{font-weight:600}
-    .normal-text{font-weight:normal;color:#001F54}
+    .normal-text{font-weight:normal;color:#aaa}
     .copy-icon{display:flex;align-items:center;margin-left:6px}
-    .copied-text{color:#555;font-size:13px;margin-left:4px;visibility:hidden}
+    .copy-icon img{
+      width:16px;height:16px;cursor:pointer;
+    }
+    .copied-text{color:#28c76f;font-size:13px;margin-left:4px;visibility:hidden}
     .copied-text.show{visibility:visible}
     .info-block{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:15px;gap:10px}
-    .info-label{flex:0 0 55%;max-width:55%;text-align:left;color:#001F54;font-weight:500;font-size:14px;line-height:1.3;white-space:normal;word-break:break-word}
+    .info-label{flex:0 0 55%;max-width:55%;text-align:left;color:#fff;font-weight:500;font-size:14px;line-height:1.3;white-space:normal;word-break:break-word}
     .info-input{flex:0 0 45%;max-width:45%;display:flex;align-items:center;justify-content:flex-end}
-    input[type=text]{width:100%;padding:8px 10px;font-size:15px;border:none;border-top:1px solid #999;border-left:1px solid #999;border-radius:0;text-align:center;background:#fff;color:#000}
+    input[type=text]{width:100%;padding:8px 10px;font-size:15px;border:none;border-top:1px solid #444;border-left:1px solid #444;border-radius:0;text-align:center;background:#1c1c1c;color:#fff}
     .english-numbers{direction:ltr;unicode-bidi:plaintext;text-align:center;font-feature-settings:"lnum"}
-    input:focus,textarea:focus{outline:none!important;box-shadow:none!important;border-top:1px solid #999;border-left:1px solid #999}
-    .upload-section{background:#ccc;width:70px;height:70px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    input:focus,textarea:focus{outline:none!important;box-shadow:0 0 0 1px #28c76f;border-color:#28c76f}
+    .upload-section{background:#333;width:70px;height:70px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px dashed #555}
     .upload-section input[type=file]{display:none}
-    .upload-section label{font-size:30px;color:#fff;cursor:pointer;line-height:1}
-    .preview-image{width:70px;height:70px;object-fit:cover;border:1px solid #ccc;display:none;flex-shrink:0}
-    .note{font-size:12px;color:#666;margin-top:4px;font-weight:normal;line-height:1.3}
-    .submit-btn{background:#0019d4;color:#fff;font-size:16px;padding:14px;border:none;width:100%;cursor:pointer;transition:.3s ease}
-    .submit-btn:hover:not(:disabled){background:#0015aa}
-    .submit-btn:disabled{background:#999;cursor:not-allowed}
-    .submit-btn:focus,.submit-btn:active{outline:none!important;box-shadow:none!important}
+    .upload-section label{font-size:30px;color:#28c76f;cursor:pointer;line-height:1}
+    .preview-image{width:70px;height:70px;object-fit:cover;border:1px solid #28c76f;display:none;flex-shrink:0}
+    .note{font-size:12px;color:#aaa;margin-top:4px;font-weight:normal;line-height:1.3}
+    .submit-btn{background:#28c76f;color:#fff;font-size:16px;padding:14px;border:none;width:100%;cursor:pointer;transition:.3s ease;font-weight:600;border-radius:4px}
+    .submit-btn:hover:not(:disabled){background:#22b05b}
+    .submit-btn:disabled{background:#666;cursor:not-allowed}
+    .submit-btn:focus,.submit-btn:active{outline:none!important;box-shadow:0 0 0 1px #28c76f}
     @media (max-width:480px){
-      .instruction,.note,.blue-text{font-size:12px;line-height:1.2}
+      .note,.blue-text{font-size:12px;line-height:1.2}
       .info-label{font-size:12px;line-height:1.2}
       .copy-icon img{width:14px;height:14px}
       .copied-text{font-size:12px}
@@ -46,26 +45,19 @@
 </head>
 <body>
   <div class="main-box">
-    <div class="logo-box">
-      <img src="https://i.postimg.cc/KjyqJ6wD/recharge.png" alt="recharge-logo" />
-    </div>
     <div class="form-wrapper">
       <form class="form-content" id="transferForm">
-        <p class="instruction">
-          Avant de faire une demande, veuillez transférer des fonds dans les <strong>10 minutes</strong> 
-          en utilisant les informations de paiement indiquées ci-dessous.
-        </p>
         <div class="payment-line">
           <span class="blue-text"><strong>CASHPLUS JAWAHER</strong> <span class="normal-text">0767442227</span></span>
           <span class="copy-icon" onclick="copyText(this,'0767442227')">
-            <img src="https://i.postimg.cc/ZnpNqgK3/file-000000001e9c620a954f9b15e02be3c1.png" alt="copy-icon" style="width:16px;height:16px;cursor:pointer;">
+            <img src="https://iili.io/KzxN4pV.png" alt="copy-icon">
             <span class="copied-text">Copié</span>
           </span>
         </div>
         <div class="payment-line">
           <span class="blue-text"><strong>Motif :</strong> <span class="normal-text">jawaher</span></span>
           <span class="copy-icon" onclick="copyText(this,'jawaher')">
-            <img src="https://i.postimg.cc/ZnpNqgK3/file-000000001e9c620a954f9b15e02be3c1.png" alt="copy-icon" style="width:16px;height:16px;cursor:pointer;">
+            <img src="https://iili.io/KzxN4pV.png" alt="copy-icon">
             <span class="copied-text">Copié</span>
           </span>
         </div>
@@ -82,7 +74,7 @@
           </div>
         </div>
         <div class="upload-block" style="display:flex;align-items:center;gap:10px;margin-bottom:15px;flex-wrap:nowrap">
-          <div style="flex:0 0 55%;max-width:55%;text-align:left;color:#001F54;font-size:14px;line-height:1.3">
+          <div style="flex:0 0 55%;max-width:55%;text-align:left;color:#fff;font-size:14px;line-height:1.3">
             <strong>من فضلك قم بتحميل الاسكرين شوت<br>لعمليه التحويل الناجحه:</strong>
             <div class="note">(.jpg, .jpeg, .png, .pdf. La taille maximale du fichier est de 20 Mo)</div>
           </div>
@@ -117,9 +109,6 @@
         const r=new FileReader();r.onload=ev=>{p.src=ev.target.result;p.style.display='block'};r.readAsDataURL(f)
       }else{p.src='';p.style.display='none'}
     });
-    const logo=document.querySelector('.logo-box img');
-    ['mousedown','touchstart'].forEach(ev=>logo.addEventListener(ev,()=>logo.classList.add('active')));
-    ['mouseup','mouseleave','touchend'].forEach(ev=>logo.addEventListener(ev,()=>logo.classList.remove('active')));
     function getSecureURL(){
       return "https://script.google.com/macros/s/AKfycby_yPgXCCFpvGRQ4Doa1FMfHS4jXd5y8p--fPQAFnADcFI6IcvfPp5WtZjt2GjqXzoneQ/exec"
     }
