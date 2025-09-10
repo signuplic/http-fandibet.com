@@ -7,14 +7,14 @@
   <style>
     *{box-sizing:border-box;font-family:Arial,sans-serif}
     html,body{margin:0;padding:0;background:transparent;color:#fff}
-    .form-wrapper{padding:10px 0;background:transparent}
+    .main-box{width:100%;margin:0;background:#0b0c10}
+    .form-wrapper{padding:10px 0}
     .form-content{padding:0 10px;max-width:100%;margin:auto}
     .payment-line{display:flex;align-items:center;justify-content:flex-start;text-align:left;margin:6px 0;flex-wrap:nowrap}
     .blue-text{font-size:14px;color:#28c76f}
     .blue-text strong{font-weight:600}
     .normal-text{font-weight:normal;color:#aaa}
     .copy-icon{display:flex;align-items:center;margin-left:6px}
-    .copy-icon img{width:16px;height:16px;cursor:pointer;}
     .copied-text{color:#28c76f;font-size:13px;margin-left:4px;visibility:hidden}
     .copied-text.show{visibility:visible}
     .info-block{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:15px;gap:10px}
@@ -41,49 +41,51 @@
   </style>
 </head>
 <body>
-  <div class="form-wrapper">
-    <form class="form-content" id="transferForm">
-      <div class="payment-line">
-        <span class="blue-text"><strong>CASHPLUS JAWAHER</strong> <span class="normal-text">0767442227</span></span>
-        <span class="copy-icon" onclick="copyText(this,'0767442227')">
-          <img src="https://iili.io/KzxN4pV.png" alt="copy-icon">
-          <span class="copied-text">Copié</span>
-        </span>
-      </div>
-      <div class="payment-line">
-        <span class="blue-text"><strong>Motif :</strong> <span class="normal-text">jawaher</span></span>
-        <span class="copy-icon" onclick="copyText(this,'jawaher')">
-          <img src="https://iili.io/KzxN4pV.png" alt="copy-icon">
-          <span class="copied-text">Copié</span>
-        </span>
-      </div>
-      <div class="info-block">
-        <div class="info-label">Montant (Min 100.00 MAD / Max 5000.00 MAD):</div>
-        <div class="info-input">
-          <input type="text" name="amount" class="english-numbers" value="100.00" required>
+  <div class="main-box">
+    <div class="form-wrapper">
+      <form class="form-content" id="transferForm">
+        <div class="payment-line">
+          <span class="blue-text"><strong>CASHPLUS JAWAHER</strong> <span class="normal-text">0767442227</span></span>
+          <span class="copy-icon" onclick="copyText(this,'0767442227')">
+            <img src="https://i.postimg.cc/ZnpNqgK3/file-000000001e9c620a954f9b15e02be3c1.png" alt="copy-icon" style="width:16px;height:16px;cursor:pointer;filter:invert(100%);">
+            <span class="copied-text">Copié</span>
+          </span>
         </div>
-      </div>
-      <div class="info-block">
-        <div class="info-label">NOM et prénom / الإسم الكامل لصاحب الحساب البنكي:</div>
-        <div class="info-input">
-          <input type="text" name="sender_name" id="sender_name" oninput="validateName(this)" required>
+        <div class="payment-line">
+          <span class="blue-text"><strong>Motif :</strong> <span class="normal-text">jawaher</span></span>
+          <span class="copy-icon" onclick="copyText(this,'jawaher')">
+            <img src="https://i.postimg.cc/ZnpNqgK3/file-000000001e9c620a954f9b15e02be3c1.png" alt="copy-icon" style="width:16px;height:16px;cursor:pointer;filter:invert(100%);">
+            <span class="copied-text">Copié</span>
+          </span>
         </div>
-      </div>
-      <div class="upload-block" style="display:flex;align-items:center;gap:10px;margin-bottom:15px;flex-wrap:nowrap">
-        <div style="flex:0 0 55%;max-width:55%;text-align:left;color:#fff;font-size:14px;line-height:1.3">
-          <strong>من فضلك قم بتحميل الاسكرين شوت<br>لعمليه التحويل الناجحه:</strong>
-          <div class="note">(.jpg, .jpeg, .png, .pdf. La taille maximale du fichier est de 20 Mo)</div>
-        </div>
-        <div style="flex:0 0 45%;max-width:45%;display:flex;align-items:center;gap:10px;justify-content:flex-start">
-          <div class="upload-section">
-            <label for="proof">+</label>
-            <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png,.pdf" required>
+        <div class="info-block">
+          <div class="info-label">Montant (Min 100.00 MAD / Max 5000.00 MAD):</div>
+          <div class="info-input">
+            <input type="text" name="amount" class="english-numbers" value="100.00" required>
           </div>
-          <img id="preview" class="preview-image" />
         </div>
-      </div>
-      <button type="submit" class="submit-btn" id="submitBtn">CONFIRMER</button>
-    </form>
+        <div class="info-block">
+          <div class="info-label">NOM et prénom / الإسم الكامل لصاحب الحساب البنكي:</div>
+          <div class="info-input">
+            <input type="text" name="sender_name" id="sender_name" oninput="validateName(this)" required>
+          </div>
+        </div>
+        <div class="upload-block" style="display:flex;align-items:center;gap:10px;margin-bottom:15px;flex-wrap:nowrap">
+          <div style="flex:0 0 55%;max-width:55%;text-align:left;color:#fff;font-size:14px;line-height:1.3">
+            <strong>من فضلك قم بتحميل الاسكرين شوت<br>لعمليه التحويل الناجحه:</strong>
+            <div class="note">(.jpg, .jpeg, .png, .pdf. La taille maximale du fichier est de 20 Mo)</div>
+          </div>
+          <div style="flex:0 0 45%;max-width:45%;display:flex;align-items:center;gap:10px;justify-content:flex-start">
+            <div class="upload-section">
+              <label for="proof">+</label>
+              <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png,.pdf" required>
+            </div>
+            <img id="preview" class="preview-image" />
+          </div>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">CONFIRMER</button>
+      </form>
+    </div>
   </div>
   <input type="text" id="hiddenCopyInput" style="position:absolute;top:-9999px;left:-9999px;" readonly>
   <script>
