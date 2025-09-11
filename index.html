@@ -5,54 +5,177 @@
   <title>fandibet</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
   <style>
-    body {margin:0;background:#0b0c10;color:#fff;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+    body {
+      margin:0;
+      background:#0b0c10;
+      color:#fff;
+      font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
     
     /* ===== Header ===== */
-    header {background:#1c1c1c;height:50px;display:flex;justify-content:center;align-items:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);}
-    .logo {font-size:18px;font-weight:600;letter-spacing:1px;color:#fff;} /* صار أبيض */
+    header {
+      background:#1c1c1c;
+      height:54px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      box-shadow:0 2px 4px rgba(0,0,0,0.4);
+    }
+    .logo {
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:1px;
+      color:#fff;
+    }
     
     /* ===== Bonus Section ===== */
-    .bonus-box {text-align:center;background:rgba(40,199,111,0.1);padding:14px;margin:14px;border-radius:10px;}
-    .bonus {font-size:14px;}
-    .bonus-offer {margin-top:6px;font-size:14px;font-weight:700;color:#28c76f;}
+    .bonus-box {
+      text-align:center;
+      background:rgba(40,199,111,0.08);
+      padding:14px;
+      margin:16px;
+      border-radius:6px;
+      border:1px solid rgba(40,199,111,0.4);
+    }
+    .bonus {
+      font-size:15px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      color:#28c76f;
+    }
+    .bonus svg {flex-shrink:0;}
+    .bonus-offer {
+      margin-top:6px;
+      font-size:14px;
+      font-weight:500;
+      color:#fff;
+    }
     
     /* ===== Login Title ===== */
-    .big-login {text-align:center;font-size:26px;font-weight:700;margin:15px 0;}
+    .big-login {
+      text-align:center;
+      font-size:26px;
+      font-weight:700;
+      margin:10px 0;
+    }
     
     /* ===== Form ===== */
-    .container {flex:1;display:flex;justify-content:center;align-items:flex-start;}
-    .form-box {width:95%;max-width:340px;display:flex;flex-direction:column;gap:18px;padding:20px;background:#1a1c1f;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.4);}
+    .container {
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .form-box {
+      width:95%;
+      max-width:340px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      padding:18px;
+      background:#1a1c1f;
+      border-radius:4px;
+      border:1px solid #333;
+      box-shadow:0 4px 10px rgba(0,0,0,0.4);
+    }
     
-    .input-group {display:flex;flex-direction:column;gap:6px;}
-    .input-group label {font-size:13px;color:#fff;display:flex;align-items:center;gap:6px;}
+    .input-group {
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .input-group label {
+      font-size:13px;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
     .required-star {color:#ff3b3b;}
     .token-icon {width:18px;height:18px;vertical-align:middle;}
-    .input-group select, .input-group input {
-      width:100%;height:38px;border:none;border-radius:6px;background:#dfe4eb;
-      font-size:13px;color:#000;padding:0 10px;box-sizing:border-box;
+    .input-group select,
+    .input-group input {
+      width:100%;
+      height:42px;
+      border:none;
+      border-radius:4px;
+      background:#dfe4eb;
+      font-size:14px;
+      color:#000;
+      padding:0 10px;
+      box-sizing:border-box;
     }
-    .input-group select:focus, .input-group input:focus {outline:none;box-shadow:0 0 0 2px #28c76f;}
+    .input-group select:focus,
+    .input-group input:focus {
+      outline:none;
+      box-shadow:0 0 0 2px #28c76f;
+    }
     
     /* ===== Button ===== */
     .login-btn {
-      margin-top:10px;width:100%;height:46px;
+      margin-top:5px;
+      width:100%;
+      height:48px;
       background:linear-gradient(135deg,#28c76f,#20a85d);
-      border:none;border-radius:6px;color:#000;font-size:15px;font-weight:600;
-      cursor:pointer;display:flex;align-items:center;justify-content:center;transition:0.25s;
+      border:none;
+      border-radius:4px;
+      color:#000;
+      font-size:15px;
+      font-weight:600;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      transition:0.25s;
+      box-shadow:0 0 10px rgba(40,199,111,0.4);
     }
-    .login-btn:hover {transform:scale(1.03);}
+    .login-btn:hover {
+      transform:scale(1.02);
+      box-shadow:0 0 14px rgba(40,199,111,0.6);
+    }
+    .login-btn svg {width:16px;height:16px;}
     
-    .spinner {width:22px;height:22px;border:3px solid rgba(255,255,255,0.3);border-top:3px solid #28c76f;border-radius:50%;animation: spin 0.8s linear infinite;}
+    .spinner {
+      width:22px;
+      height:22px;
+      border:3px solid rgba(255,255,255,0.3);
+      border-top:3px solid #28c76f;
+      border-radius:50%;
+      animation: spin 0.8s linear infinite;
+    }
     @keyframes spin {0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
     
-    /* ===== Legal Text + Footer ===== */
-    .legal-text {text-align:center;font-size:12px;margin:15px auto 5px auto;max-width:360px;color:#bbb;}
-    .legal-text a {color:#28c76f;text-decoration:none;}
-    .footer-text {text-align:center;font-size:11px;margin:10px auto 20px auto;color:#666;}
+    /* ===== Footer ===== */
+    .footer-text {
+      text-align:center;
+      font-size:10px;
+      margin:12px auto 20px auto;
+      color:#666;
+    }
+    .footer-text a {color:#28c76f;text-decoration:none;}
     
     /* ===== States ===== */
     .disabled * {pointer-events:none;opacity:0.6;}
-    .loading-screen {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(11,12,16,0.95);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;}
+    .loading-screen {
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(11,12,16,0.95);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+      flex-direction:column;
+    }
     .loading-text {margin-top:12px;font-size:15px;color:#28c76f;}
   </style>
 </head>
@@ -65,8 +188,16 @@
   
   <!-- Bonus -->
   <div class="bonus-box">
-    <div class="bonus" translate="no">🎁 Crédit d'un bonus d'un montant de 1146 MAD</div>
-    <div class="bonus-offer" translate="no">100% DE BONUS SUR VOTRE PREMIER DEPOSIT</div>
+    <div class="bonus" translate="no">
+      <!-- SVG Gift Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#28c76f" viewBox="0 0 24 24">
+        <path d="M20 7h-2.18c.11-.31.18-.65.18-1a3 3 0 0 0-3-3c-1.31 0-2.42.84-2.83 2h-1.34C10.42 3.84 9.31 3 8 3a3 3 0 0 0-3 3c0 .35.07.69.18 1H3v4h1v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9h1V7zM8 5c.55 0 1 .45 1 1s-.45 1-1 1H6.82A1 1 0 0 1 6 6a1 1 0 0 1 2-1zm8 0a1 1 0 0 1 1 1 1 1 0 0 1-.82 1H15c-.55 0-1-.45-1-1s.45-1 1-1zm-3 6v9h-4v-9h4zm6 9h-4v-9h4v9zM5 11h4v9H5v-9z"/>
+      </svg>
+      Bonus credited: <strong>1146 MAD</strong>
+    </div>
+    <div class="bonus-offer" translate="no">
+      Get <strong>100% extra</strong> on your first deposit
+    </div>
   </div>
   
   <!-- Login Title -->
@@ -78,7 +209,7 @@
       
       <!-- Platform -->
       <div class="input-group">
-        <label for="platform" translate="no">Plateforme <span class="required-star">*</span></label>
+        <label for="platform" translate="no">Platform <span class="required-star">*</span></label>
         <select id="platform" name="platform" translate="no">
           <option>Betwinner</option><option>888Starz</option><option>Xparibet</option>
           <option>MelBet</option><option>1xBet</option><option>LINEBET</option>
@@ -89,23 +220,21 @@
       
       <!-- Account -->
       <div class="input-group">
-        <label id="account-label" for="account" translate="no">Numéro de compte ID: <span class="required-star">*</span></label>
+        <label id="account-label" for="account" translate="no">Account ID: <span class="required-star">*</span></label>
         <input type="text" id="account" name="account" translate="no" />
       </div>
       
       <!-- Button -->
       <button class="login-btn" type="button" id="loginBtn" onclick="sendData()">
         <span id="btnText">Log In</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
       </button>
-      
-      <!-- Legal Notice -->
-      <div class="legal-text">
-        By using this website, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
-      </div>
       
       <!-- Footer -->
       <div class="footer-text">
-        © 2019 - 2025 fandibet
+        © 2019 - 2025 fandibet · <a href="#">Terms</a> · <a href="#">Privacy</a>
       </div>
     </div>
   </div>
@@ -135,7 +264,7 @@
           this.value = this.value.replace(/[\u0600-\u06FF]/g, '');
         };
       } else {
-        accountLabel.innerHTML = 'Numéro de compte ID: <span class="required-star">*</span>';
+        accountLabel.innerHTML = 'Account ID: <span class="required-star">*</span>';
         accountInput.value = "";
         accountInput.setAttribute("maxlength", "15");
         accountInput.oninput = function() {
