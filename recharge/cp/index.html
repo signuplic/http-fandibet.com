@@ -84,6 +84,13 @@
     input[type=text]{width:100%;padding:10px;font-size:15px;border:none;border-top:1px solid #bbb;border-left:1px solid #bbb;border-radius:0;text-align:center;background:#fff;color:#000}
     .english-numbers{direction:ltr;text-align:center;font-feature-settings:"lnum"}
 
+    /* إزالة الفلتر الأسود عند الضغط */
+    input[type=text]:focus,
+    input[type=file]:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
     .upload-section{background:#ccc;width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:0}
     .upload-section input[type=file]{display:none}
     .upload-section label{font-size:30px;color:#fff;cursor:pointer;line-height:1}
