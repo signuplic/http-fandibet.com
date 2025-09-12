@@ -105,6 +105,54 @@
     }
     .submit-btn:hover:not(:disabled){background:#0066d1}
     .submit-btn:disabled{background:#999;cursor:not-allowed}
+
+    /* تعديل خاص للأجهزة الصغيرة (≤ 380px) */
+    @media (max-width: 380px) {
+      .card {
+        width:95%;
+        margin:20px auto;
+      }
+
+      .card-top img {
+        max-height:45px;
+      }
+
+      .info-label {
+        flex:0 0 50%;
+        max-width:50%;
+        font-size:13px;
+      }
+
+      .info-input {
+        flex:0 0 50%;
+        max-width:50%;
+      }
+
+      input[type=text] {
+        font-size:14px;
+        padding:8px;
+      }
+
+      .payment-line {
+        flex-wrap:wrap;
+        font-size:13px;
+      }
+
+      .blue-text {
+        font-size:13px;
+      }
+
+      .upload-section,
+      .preview-image {
+        width:60px;
+        height:60px;
+      }
+
+      .submit-btn {
+        font-size:15px;
+        padding:12px;
+      }
+    }
   </style>
 </head>
 <body>
