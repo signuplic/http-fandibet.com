@@ -7,7 +7,7 @@
   <style>
     body {
       margin:0;
-      background:#0b0c10; /* لون الخلفية */
+      background:#0b0c10;
       color:#fff;
       font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     }
@@ -32,17 +32,17 @@
       flex-shrink:0;
     }
 
-    /* البطاقة الكاملة */
+    /* البطاقة الكاملة بحواف حادة */
     .card {
       background:#ffffff;
-      border-radius:6px;   /* حواف خفيفة */
+      border-radius:0;   /* حواف حادة */
       width:90%;         
       max-width:420px;
       margin:30px auto;  
       display:flex;
       flex-direction:column;
       overflow:hidden;
-      box-shadow:0 4px 12px rgba(0,0,0,0.25); /* ظل أنيق */
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
     }
     .card-top {
       padding:20px 0;    
@@ -58,12 +58,12 @@
       display:block;
     }
     .card-bottom {
-      background:#f7f7f7; /* رمادي فاتح أنعم */
+      background:#f7f7f7;
       padding:20px;
       color:#000;
     }
 
-    /* محتوى الفلتر الرمادي */
+    /* الحقول */
     .payment-line{
       display:flex;
       align-items:center;
@@ -81,21 +81,23 @@
     .info-block{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:10px}
     .info-label{flex:0 0 55%;max-width:55%;text-align:left;color:#001F54;font-weight:500;font-size:14px;line-height:1.4}
     .info-input{flex:0 0 45%;max-width:45%}
-    input[type=text]{width:100%;padding:10px;font-size:15px;border:none;border-top:1px solid #bbb;border-left:1px solid #bbb;border-radius:4px;text-align:center;background:#fff;color:#000}
+    input[type=text]{width:100%;padding:10px;font-size:15px;border:none;border-top:1px solid #bbb;border-left:1px solid #bbb;border-radius:0;text-align:center;background:#fff;color:#000}
     .english-numbers{direction:ltr;text-align:center;font-feature-settings:"lnum"}
 
-    .upload-section{background:#ccc;width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:4px}
+    .upload-section{background:#ccc;width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:0}
     .upload-section input[type=file]{display:none}
     .upload-section label{font-size:30px;color:#fff;cursor:pointer;line-height:1}
-    .preview-image{width:70px;height:70px;object-fit:cover;border:1px solid #ccc;display:none;border-radius:4px}
+    .preview-image{width:70px;height:70px;object-fit:cover;border:1px solid #ccc;display:none;border-radius:0}
     .note{font-size:12px;color:#666;margin-top:4px}
+
+    /* زر التأكيد بحواف حادة */
     .submit-btn{
       background:#007bff;
       color:#fff;
       font-size:16px;
       padding:14px;
       border:none;
-      border-radius:4px;
+      border-radius:0; /* حواف حادة */
       width:100%;
       cursor:pointer;
       transition:.3s ease;
