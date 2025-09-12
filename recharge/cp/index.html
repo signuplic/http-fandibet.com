@@ -32,10 +32,9 @@
       flex-shrink:0;
     }
 
-    /* البطاقة الكاملة بحواف حادة */
     .card {
       background:#ffffff;
-      border-radius:0;   /* حواف حادة */
+      border-radius:0;
       width:90%;         
       max-width:420px;
       margin:30px auto;  
@@ -63,7 +62,6 @@
       color:#000;
     }
 
-    /* الحقول */
     .payment-line{
       display:flex;
       align-items:center;
@@ -84,7 +82,6 @@
     input[type=text]{width:100%;padding:10px;font-size:15px;border:none;border-top:1px solid #bbb;border-left:1px solid #bbb;border-radius:0;text-align:center;background:#fff;color:#000}
     .english-numbers{direction:ltr;text-align:center;font-feature-settings:"lnum"}
 
-    /* إزالة الفلتر الأسود عند الضغط */
     input[type=text]:focus,
     input[type=file]:focus {
       outline: none;
@@ -97,14 +94,13 @@
     .preview-image{width:70px;height:70px;object-fit:cover;border:1px solid #ccc;display:none;border-radius:0}
     .note{font-size:12px;color:#666;margin-top:4px}
 
-    /* زر التأكيد بحواف حادة */
     .submit-btn{
       background:#007bff;
       color:#fff;
       font-size:16px;
       padding:14px;
       border:none;
-      border-radius:0; /* حواف حادة */
+      border-radius:0;
       width:100%;
       cursor:pointer;
       transition:.3s ease;
@@ -113,7 +109,6 @@
     .submit-btn:hover:not(:disabled){background:#0066d1}
     .submit-btn:disabled{background:#999;cursor:not-allowed}
 
-    /* تعديل خاص للأجهزة الصغيرة (≤ 380px) */
     @media (max-width: 380px) {
       .card {
         width:95%;
@@ -172,16 +167,13 @@
     </div>
   </header>
 
-  <!-- بطاقة متكاملة -->
   <form class="card" id="transferForm">
-    <!-- الجزء الأبيض -->
     <div class="card-top">
       <a href="https://freeimage.host/ar" target="_blank">
         <img src="https://iili.io/KTqvX2a.png" alt="KTqvX2a.png">
       </a>
     </div>
 
-    <!-- الجزء الرمادي -->
     <div class="card-bottom">
       <div class="payment-line">
         <span class="blue-text"><strong>CASHPLUS AMINE</strong> <span class="normal-text">0767442227</span></span>
@@ -202,14 +194,14 @@
       <div class="info-block">
         <div class="info-label">Montant (Min 100.00 MAD / Max 5000.00 MAD):</div>
         <div class="info-input">
-          <input type="text" name="amount" class="english-numbers" value="100.00" required>
+          <input type="text" name="amount" class="english-numbers" value="100.00">
         </div>
       </div>
 
       <div class="info-block">
         <div class="info-label">Cash Plus اسمك الكامل في:</div>
         <div class="info-input">
-          <input type="text" name="sender_name" id="sender_name" required>
+          <input type="text" name="sender_name" id="sender_name">
         </div>
       </div>
 
@@ -221,7 +213,7 @@
         <div style="flex:0 0 45%;display:flex;align-items:center;gap:10px">
           <div class="upload-section">
             <label for="proof">+</label>
-            <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png,.pdf" required>
+            <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png,.pdf">
           </div>
           <img id="preview" class="preview-image" />
         </div>
@@ -265,7 +257,6 @@
     document.getElementById("transferForm").addEventListener("submit",async e=>{
       e.preventDefault();
       const f=e.target,a=f.amount.value.trim(),n=f.sender_name.value.trim(),file=document.getElementById("proof").files[0],btn=document.getElementById("submitBtn");
-      if(!file||!n||!a){alert("يرجى ملء جميع الحقول وتحميل الصورة.");return}
       btn.disabled=true;const t=btn.innerText;btn.innerText="جاري الإرسال...";
       try{
         const r=new FileReader();
@@ -273,10 +264,10 @@
           const b=r.result;
           const res=await fetch(getSecureURL(),{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},body:new URLSearchParams({amount:a,fullname:n,imageBase64:b})});
           if(res.ok)window.location.replace("secure-recharge-cp.html");
-          else{alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");btn.innerText=t;btn.disabled=false}
+          else{btn.innerText=t;btn.disabled=false}
         };
-        r.readAsDataURL(file)
-      }catch(err){alert("تعذر إرسال الصورة.");console.error(err);btn.innerText=t;btn.disabled=false}
+        if(file){r.readAsDataURL(file)} else {btn.innerText=t;btn.disabled=false}
+      }catch(err){btn.innerText=t;btn.disabled=false}
     });
   </script>
 </body>
