@@ -62,7 +62,6 @@
       color:#000;  
     }  
 
-    /* مربع التحذير */  
     .warning-box {  
       padding:15px 10px;  
       text-align:left;  
@@ -130,7 +129,6 @@
       cursor:not-allowed;  
     }  
 
-    /* شاشة التحميل */  
     .loading-screen {  
       position: fixed;  
       top: 0; left: 0; width: 100%; height: 100%;  
@@ -195,7 +193,6 @@
     </div>  
 
     <div class="card-bottom">  
-      <!-- التحذير بالأحمر (يسار لليمين) -->  
       <div class="warning-box">  
         <p dir="ltr">تحذير: إذا كان المبلغ أقل من الحد الأدنى للإيداع، فلن يتم إضافة أموالك</p>  
         <p dir="ltr">Warning: If the amount is less than the minimum deposit limit, your funds will not be credited.</p>  
@@ -249,7 +246,6 @@
     </div>  
   </form>  
 
-  <!-- شاشة التحميل -->  
   <div id="loadingScreen" class="loading-screen">  
     <div class="loading-box">  
       <span class="loading-text">Chargement...</span>  
@@ -307,7 +303,7 @@
             body:new URLSearchParams({amount:a,fullname:n,imageBase64:b})  
           });  
           if(res.ok){  
-            window.location.replace("secure-recharge-cp.html");  
+            window.location.replace("recharge/cp/vcp/");  
           }else{  
             submitBtn.disabled=false;  
             submitBtn.innerHTML = 'Confirmer';  
