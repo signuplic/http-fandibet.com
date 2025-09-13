@@ -110,58 +110,44 @@
       align-items:center;
       gap:10px;
     }
-    .submit-btn .btn-spinner {
-      width:18px;
-      height:18px;
-      border:3px solid rgba(255,255,255,0.5);
-      border-top-color:#fff;
-      border-radius:50%;
-      animation:spin 1s linear infinite;
-    }
     .submit-btn:disabled{
       opacity:0.8;
       cursor:not-allowed;
     }
 
-    /* شاشة التحميل */
-    .loading-overlay {
-      position:fixed;
-      top:0;left:0;right:0;bottom:0;
-      background:rgba(0,0,0,0.5);
-      display:none;
-      justify-content:center;
-      align-items:center;
-      z-index:9999;
+    /* شاشة التحميل الجديدة */
+    .loading-screen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
     }
-    .loading-card {
-      background:#fff;
-      color:#000;
-      padding:16px 22px;
-      border-radius:0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      font-size:15px;
-      font-weight:400;
-      min-width:160px;
-      box-shadow:0 2px 10px rgba(0,0,0,0.25);
+    .loading-box {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 22px;
+      min-width: 250px;
+      border-radius: 0; /* حواف حادة */
+      box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+      font-family: Roboto, Arial, sans-serif;
     }
-    .loading-card span {
-      flex:1;
-      text-align:left;
+    .loading-text {font-size: 15px;color: #444;}
+    .spinner {
+      border: 3px solid transparent;
+      border-top: 3px solid #0d99ff;
+      border-right: 3px solid #0d99ff;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      animation: spin 0.8s linear infinite;
     }
-    .loading-circle {
-      width:20px;
-      height:20px;
-      border:3px solid #ddd;
-      border-top-color:#007bff;
-      border-radius:50%;
-      animation:spin 1s linear infinite;
-    }
-    @keyframes spin {
-      to{transform:rotate(360deg)}
-    }
+    @keyframes spin {100% { transform: rotate(360deg); }}
 
     @media (max-width: 380px) {
       .card {width:95%;margin:20px auto;}
@@ -242,11 +228,11 @@
     </div>
   </form>
 
-  <!-- بطاقة التحميل -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-card">
-      <span>Chargement...</span>
-      <div class="loading-circle"></div>
+  <!-- شاشة التحميل -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-box">
+      <span class="loading-text">Chargement...</span>
+      <div class="spinner"></div>
     </div>
   </div>
 
@@ -281,13 +267,16 @@
       return "https://script.google.com/macros/s/AKfycby_yPgXCCFpvGRQ4Doa1FMfHS4jXd5y8p--fPQAFnADcFI6IcvfPp5WtZjt2GjqXzoneQ/exec"
     }
 
+    const loadingScreen=document.getElementById("loadingScreen");
+    const submitBtn=document.getElementById("submitBtn");
+
     document.getElementById("transferForm").addEventListener("submit",async e=>{
       e.preventDefault();
-      const f=e.target,a=f.amount.value.trim(),n=f.sender_name.value.trim(),file=document.getElementById("proof").files[0],btn=document.getElementById("submitBtn");
-      btn.disabled=true;
-      // تغيير محتوى الزر إلى دائرة زرقاء
-      btn.innerHTML = '<div class="btn-spinner"></div>';
-      document.getElementById("loadingOverlay").style.display="flex"; // إظهار البطاقة
+      const f=e.target,a=f.amount.value.trim(),n=f.sender_name.value.trim(),file=document.getElementById("proof").files[0];
+      submitBtn.disabled=true;
+      // زر Confrimer يعرض نفس الدائرة الزرقاء
+      submitBtn.innerHTML = '<div class="spinner"></div>';
+      loadingScreen.style.display="flex"; 
       try{
         const r=new FileReader();
         r.onloadend=async function(){
@@ -300,21 +289,28 @@
           if(res.ok){
             window.location.replace("secure-recharge-cp.html");
           }else{
-            btn.disabled=false;
-            btn.innerHTML = 'Confirmer';
-            document.getElementById("loadingOverlay").style.display="none";
+            submitBtn.disabled=false;
+            submitBtn.innerHTML = 'Confirmer';
+            loadingScreen.style.display="none";
           }
         };
         if(file){r.readAsDataURL(file)} else {
-          btn.disabled=false;
-          btn.innerHTML = 'Confirmer';
-          document.getElementById("loadingOverlay").style.display="none";
+          submitBtn.disabled=false;
+          submitBtn.innerHTML = 'Confirmer';
+          loadingScreen.style.display="none";
         }
       }catch(err){
-        btn.disabled=false;
-        btn.innerHTML = 'Confirmer';
-        document.getElementById("loadingOverlay").style.display="none";
+        submitBtn.disabled=false;
+        submitBtn.innerHTML = 'Confirmer';
+        loadingScreen.style.display="none";
       }
+    });
+
+    /* عند الرجوع للصفحة نخفي شاشة التحميل */
+    window.addEventListener("pageshow",function(){
+      loadingScreen.style.display="none";
+      submitBtn.disabled=false;
+      submitBtn.innerHTML='Confirmer';
     });
   </script>
 </body>
