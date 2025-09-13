@@ -10,20 +10,14 @@
       background:#0b0c10;
       color:#fff;
       font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      min-height:100vh;
     }
 
     header {
       background:#1c1c1c;
       height:44px;
-      width:100%;
       display:flex;
       justify-content:center;
       align-items:center;
-      position:fixed;
-      top:0;
-      left:0;
-      z-index:1000;
     }
     .logo {
       font-size:15px;
@@ -38,54 +32,44 @@
       flex-shrink:0;
     }
 
-    /* البطاقة */
-    .popup-wrapper {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin-top:80px; /* تحت الهيدر */
-    }
-    .popup-card {
+    .card {
       background:#ffffff;
       border-radius:0;
       width:90%;
       max-width:420px;
+      margin:30px auto;
       display:flex;
       flex-direction:column;
       overflow:hidden;
       box-shadow:0 4px 12px rgba(0,0,0,0.25);
     }
-    .popup-header {
-      background:#ffffff;
+    .card-top {
       padding:20px 0;
       display:flex;
-      justify-content:center;
       align-items:center;
+      justify-content:center;
+      background:#ffffff;
     }
-    .popup-header img {
+    .card-top img {
       max-height:55px;
       max-width:85%;
       object-fit:contain;
       display:block;
     }
-    .popup-footer {
+    .card-bottom {
       background:#f7f7f7;
-      padding:20px;
-      text-align:center;
-      font-size:15px;
+      padding:40px 20px;
       color:#000;
-      font-weight:500;
-    }
-
-    @media(max-width:380px){
-      .popup-card{width:95%;}
-      .popup-header img{max-height:45px;}
-      .popup-footer{font-size:14px;padding:16px;}
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      font-size:18px;
+      font-weight:700;
     }
   </style>
 </head>
 <body>
-  <!-- الهيدر -->
   <header>
     <div class="logo">fandibet
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
@@ -95,16 +79,17 @@
     </div>
   </header>
 
-  <!-- البطاقة -->
-  <div class="popup-wrapper">
-    <div class="popup-card">
-      <div class="popup-header">
-        <img src="https://i.postimg.cc/Wpy5653Y/securepay.png" alt="تم بنجاح" referrerpolicy="no-referrer">
-      </div>
-      <div class="popup-footer">
-        تم إنشاء طلب الإيداع بنجاح.
-      </div>
+  <form class="card">
+    <div class="card-top">
+      <a href="https://freeimage.host/ar" target="_blank">
+        <img src="https://iili.io/KTqvX2a.png" alt="KTqvX2a.png">
+      </a>
     </div>
-  </div>
+
+    <!-- الجزء الرمادي فيه رسالة فقط -->
+    <div class="card-bottom">
+      تم انشاء طلب الإيداع بنجاح.
+    </div>
+  </form>
 </body>
 </html>
